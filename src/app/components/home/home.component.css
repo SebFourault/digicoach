@@ -2,6 +2,7 @@
   background-color: lightgrey;
   border-radius: 10px;
   padding: 20px;
+  overflow: visible;
 }
 
 .tool-logo {
@@ -9,6 +10,7 @@
   border-radius: 5px;
   margin: 0 auto;
   max-height: 100px;
+  margin-top: -50px;
 }
 
 
