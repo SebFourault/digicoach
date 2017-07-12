@@ -15,12 +15,24 @@ import { DataService } from './services/data/data.service';
 // Import routes
 import { Routing } from './app.routing';
 
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer} from '@angular/platform-browser';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+} 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ChatbotComponent,
-    ToolboxComponent
+    ToolboxComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

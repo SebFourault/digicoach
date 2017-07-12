@@ -1,3 +1,27 @@
-<p>
-  chatbot works!
-</p>
+<div class="chatbot-container mdl-grid">
+  <div class="chatbot-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell" [ngClass]="this.iframeView == 0 ? 'mdl-cell--8-col mdl-cell--2-offset' : 'mdl-cell--4-col'">
+
+    <ul class="ChatLog" id="chatlog">
+      <ng-container *ngFor="let message of chatlog">
+        <li *ngIf="message.emiter == 'bot'" class="ChatLog__entry"><img class="ChatLog__avatar" src="https://dl.airtable.com/ScxEZgzR9eOlYDCLfMmA_full_boy%20(2).png" /><p class="ChatLog__message"> {{ message.content }} </p></li>
+        <li *ngIf="message.emiter == 'user'" class="ChatLog__entry ChatLog__entry_mine"><p class="ChatLog__message"> {{ message.content }} </p></li>
+      </ng-container>
+    </ul>
+
+    <div class="user-message-div">
+    <form id="send-message" (keydown)="send($event)">
+      <input class="user-message-input" id="user-message-input" placeholder="En quoi puis-je vous aider ?" autocomplete="off" [(ngModel)]="userInput" [ngModelOptions]="{standalone: true}">
+      <div id="icon-send">
+        <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
+      </div>
+    </form>
+    </div>
+
+  </div>
+
+<div class="iframe-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell" [ngClass]="this.iframeView == 1 ? 'mdl-cell--8-col' : 'invisible'" *ngIf="this.iframeView">
+  <iframe [src]="this.iframeUrl | safe"  width="100%" height="700">
+  </iframe>
+</div>
+
+</div>

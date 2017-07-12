@@ -1,0 +1,205 @@
+/* USER MESSAGE */
+
+#chatbot-div{
+  margin-top: 50px;
+  height:480px;
+}
+
+.user-message-div{
+  display: block;
+  margin-top: 30px;
+}
+
+.user-message-input{
+  bottom: 0;
+  width: 96%;
+  height: 50px;
+  padding: .3em 2%;
+  font-size: 1.5em;
+  font-family: "Open Sans";
+  border-radius: 5px;
+  border: solid 1px grey;
+}
+
+#icon-send{
+  float: right;
+  position: relative;
+  color:#08f;
+  margin-top: -45px;
+  margin-right: 20px;
+}
+
+
+
+/* CHATBOT */
+
+ul.ChatLog {
+  list-style: none;
+}
+
+.ChatLog {
+  width:100%;
+  margin: 0 auto;
+  padding: 0;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.ChatLog .ChatLog__entry {
+  margin: .5em;
+}
+
+.ChatLog__entry {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  max-width: 100%;
+}
+
+.ChatLog__entry.ChatLog__entry_mine {
+  flex-direction: row-reverse;  
+}
+
+.ChatLog__avatar {
+  flex-shrink: 0;
+  flex-grow: 0;
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  
+}
+
+.ChatLog__entry.ChatLog__entry_mine 
+.ChatLog__avatar {
+  display: none;
+}
+
+.ChatLog__entry .ChatLog__message {
+  position: relative;
+  margin: 0 12px;
+}
+
+.ChatLog__entry .ChatLog__message::before {
+  position: absolute;
+  right: auto;
+  bottom: .6em;
+  left: -12px;
+  height: 0;
+  content: '';
+  border: 6px solid transparent;
+  border-right-color: #ddd;
+  z-index: 2;
+}
+
+.ChatLog__entry.ChatLog__entry_mine .ChatLog__message::before {
+  right: -12px;
+  bottom: .6em;
+  left: auto;
+  border: 6px solid transparent;
+  border-left-color: #08f;
+}
+
+a.ChatLog__quickReplies{
+  color: #08f;
+  border: 1px solid #08f;
+  background-color: white;
+  padding: .5em 1em;
+  border-radius: 15px;
+  font-weight: lighter;
+  position: inline-block;
+  margin: 0.3em;
+  text-decoration: none;
+}
+
+.blank-avatar{
+  display: inline-block;
+  width: 70px;
+  margin-top: 20px;
+}
+
+.ChatLog__message {
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  padding: .5em 1em;
+  border-radius: 4px;
+  font-weight: lighter;
+  max-width: 70%;
+}
+
+.ChatLog__message a {
+  background-color: #08f;
+  padding: 5px 14px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  margin: 3px;
+}
+
+.ChatLog__message i {
+  vertical-align: bottom;
+  margin-right: 4px;
+}
+
+.ChatLog__loader{
+  background-color: #FFF;
+  padding: .5em 1em;
+  border-radius: 4px;
+  font-weight: lighter;
+  max-width: 70%;
+  width:50px;
+}
+
+.ChatLog__loader .chatLog-loader-img{
+  position: relative;
+  width: 50px;
+}
+
+.ChatLog__entry.ChatLog__entry_mine .ChatLog__message {
+  border: 1px solid #08f;
+  background-color: #08f;
+  color: #fff;
+}
+
+.ChatLog__message .ChatLog__timestamp {
+  display: none;
+}
+
+.img-msg {
+  max-width:250px;
+}
+
+.ChatLog__message__img {
+  background-color: transparent;
+  border: none;
+}
+
+
+
+
+.mdl-navigation__link {
+  color: black !important;
+}
+
+.demo-main {
+  margin-top: -35vh;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.demo-header .mdl-layout__header-row {
+  padding-left: 40px;
+}
+
+.chatbot-container {
+  max-width: 1600px;
+  width: calc(100% - 16px);
+  margin: 0 auto;
+}
+
+.chatbot-content {
+  border-radius: 2px;
+  padding: 50px 56px;
+  margin-bottom: 80px;
+}
