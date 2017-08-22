@@ -1,18 +1,64 @@
+.container {
+  max-width: 1400px;
+  margin: auto;
+}
+
 .tool-card {
-  background-color: lightgrey;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 15px;
+  padding: 25px;
   overflow: visible;
+  background-color: transparent;
+}
+
+.tool-card-content {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  height: 200px;
+  box-shadow: 0 9px 46px 3px rgba(0, 0, 0, 0.05), 0 11px 15px -7px rgba(0, 0, 0, 0), 0 24px 38px 3px rgba(0, 0, 0, 0);
 }
 
 .tool-logo {
-  width: 50%;
+  width: 60%;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: auto;
   max-height: 100px;
-  margin-top: -50px;
+  display: block;
+  position:relative;
+  top:50%;
+  transform: translateY(-50%);
+  margin-top: 15px;
 }
 
+.tool-logo-card {
+  border-radius: 15px;
+  margin: 0 auto;
+  max-height: 100px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  background-color: white;
+  width: 100px;
+  height: 100px;
+}
+
+p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: 300;
+  font-style: normal;
+  color: #93C2F9;
+}
+
+h4 {
+  font-family: Montserrat;
+  font-size: 16pt;
+  color: #93C2F9;
+  font-weight: ;
+}
 
 select {
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
@@ -23,7 +69,7 @@ select {
   color:white;
   padding:12px;
   width:auto;
-  font-family:arial,tahoma;
+  font-family: montserrat,arial,tahoma;
   font-size:16px;
   font-weight:bold;
   color:#fff;
@@ -42,27 +88,27 @@ select {
 }
 
 #blue {
-  background-color:#3498DB;
+  background-color:#4FBDF9;
 }
 
 #blue:hover {
-  background-color:#2980B9;
+  background-color:#96DAFF;
 }
 
 #green {
-  background-color:#2ECC71;
+  background-color:#69F1A6;
 }
 
 #green:hover {
-  background-color:#27AE60;
+  background-color:#B0E4C7;
 }
 
 #red {
-  background-color:#E74C3C;
+  background-color:#F94F95;
 }
 
 #red:hover {
-  background-color:#C0392B;
+  background-color:#F5A5C5;
 }
 
 select:focus, select:active {
