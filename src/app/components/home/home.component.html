@@ -10,6 +10,7 @@
 
 <br><br>
 
+<!-->
 <div class="container">
 
   <div class="mdl-grid">
@@ -51,23 +52,30 @@
     </button>
     </div>
     </div>
+<!-->
 
     <div class="mdl-grid" *ngIf="tools">
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records">
+
         <div class="tool-logo-card">
+          <img class="tool-card-star" *ngIf="tool.fields['Staff pick']" src="../../../assets/img/plateforme/star_ico.svg">
           <img src="{{ tool.fields['Logo'][0]['url'] }}" class="tool-logo" *ngIf="tool.fields['Logo']">
         </div>
         <div class="tool-card-content">
-          <h4> {{ tool.fields['Tool'] }} </h4>
+          <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
+          <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }}</p>
           <p> {{ tool.fields['Description'] }}</p>
           <span class="mdl-chip" *ngFor="let usage of tool.fields['Usage']">
               <span class="mdl-chip__text"> {{ usage }} </span>
           </span>
           <br>
-          <span *ngFor="let platform of tool.fields['Plateforme']">
-            <span *ngIf="platform == 'Android'">
-              <img src="https://image.freepik.com/vecteurs-libre/logo-de-boot-android_634639.jpg" style="width:40px">
-            </span>
+          <span class="tool-card-platform-icon-container">
+            <ng-container *ngFor="let platform of tool.fields['Plateforme']">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
+            </ng-container>
           </span>
         </div>
       </div>
