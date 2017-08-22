@@ -53,7 +53,7 @@
     </div>
 
     <div class="mdl-grid" *ngIf="tools">
-      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records">
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records" (click)="openModal(tool)">
         <div class="tool-logo-card">
           <img src="{{ tool.fields['Logo'][0]['url'] }}" class="tool-logo" *ngIf="tool.fields['Logo']">
         </div>

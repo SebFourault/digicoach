@@ -11,12 +11,16 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { DataService } from './services/data/data.service';
 
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+
 
 // Import routes
 import { Routing } from './app.routing';
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
+import { ToolmodalComponent } from './components/toolmodal/toolmodal.component';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -32,14 +36,18 @@ export class SafePipe implements PipeTransform {
     HomeComponent,
     ChatbotComponent,
     ToolboxComponent,
-    SafePipe
+    SafePipe,
+    ToolmodalComponent
   ],
+  entryComponents: [ToolmodalComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     Routing,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
