@@ -1,22 +1,111 @@
-<!-- Simple header with fixed tabs. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-            mdl-layout--fixed-tabs">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Augment Me</span>
-    </div>
-    <!-- Tabs -->
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-      <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" class="mdl-layout__tab">Gallerie</a>
-      <a routerLink="/chatbot" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" class="mdl-layout__tab">Mes cours</a>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
-  </div>
-  <main class="mdl-layout__content">
-    <router-outlet></router-outlet>
-  </main>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">
+            <a routerLink="/" class="mdl-layout__tab">
+            Augment.me
+            </a>
+          </span>
+          <div class="mdl-layout-spacer"></div>
 
-</div>
+          <div class="mdl-layout__header-row home_header_large">
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href="">Features</a>
+              <a class="mdl-navigation__link" href="">Story</a>
+              <a class="mdl-navigation__link" href="">Contact</a>
+            </nav>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                      mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon"
+                   for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample"
+                     id="waterfall-exp">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mdl-grid tagline">
+          <div class="mdl-cell mdl-cell--12-col">
+            <h3> Augment Me </h3>
+          <h6> A "Learning by doing" e-school powered by AI </h6>
+          </div>
+
+        </div>
+
+
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col">
+               <h5>Je suis</h5>
+                <select id="blue">
+                  <option>Qqun avide de savoir :)</option>
+                  <option>Employé</option>
+                  <option>Consultant</option>
+                  <option>Marketeux</option>
+                  <option>Financeman</option>
+                  <option>Etudiant</option>
+                </select>
+            </div>
+            <div class="mdl-cell mdl-cell--5-col">
+                <h5>Je cherche à</h5>
+                <select id="orange">
+                  <option>Améliorer mon impact à l'oral</option>
+                  <option>Rendre mes livrables plus waow</option>
+                  <option>Digitaliser ma gestion de projet</option>
+                  <option>Donner de la visibilité à mon projet</option>
+                  <option>Mieux collaborer avec mon équipe</option>
+                  <option>Dynamiser mes réunions/ateliers</option>
+                  <option>Prototyper mes idées</option>
+                </select>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col">
+                 <h5>Et j'ai</h5>
+                 <select id="red">
+                  <option>Pas le temps !</option>
+                  <option>5mn pas plus</option>
+                  <option>10 petites minutes</option>
+                  <option>30mn, le temps d'une réunion efficace</option>
+                  <option>1 bonne heure</option>
+                  <option>Tout mon temps si ça vaut le coup</option>
+                </select>
+              </div>
+              <div class="action-button mdl-cell mdl-cell--1-col ">
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" routerLink="/chatbot">
+                <i class="material-icons">arrow_forward</i>
+              </button>
+              </div>
+            </div>
+          </div>
+          </div>
+        <!-- Bottom row, not visible on scroll -->
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+          Augment.me
+        </span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+    </div>

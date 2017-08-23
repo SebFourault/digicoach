@@ -1,0 +1,116 @@
+.tagline {
+  width: 100%;
+  text-align: center;
+
+}
+
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
+}
+
+.home_header_large {
+
+}
+
+.action-button {
+  margin-top: 69px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+h3 {
+  font-family: Montserrat;
+  font-size: 18pt;
+  color: #93C2F9;
+  font-weight: ;
+}
+
+  h4 {
+    font-family: Montserrat;
+    font-size: 16pt;
+    color: #93C2F9;
+    font-weight: ;
+  }
+
+  h5 {
+    font-family: Montserrat;
+    font-size: 13pt;
+    color: #93C2F9;
+    font-weight: ;
+  }
+
+  h6 {
+    font-family: Montserrat;
+    font-size: 10pt;
+    color: #93C2F9;
+    font-weight: ;
+  }
+
+  .tool-card-title {
+    margin-top: 0px;
+  }
+
+  select {
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+    background-color:#3498DB;
+    background-repeat:no-repeat;
+    background-position: right 10px top 15px;
+    background-size: 16px 16px;
+    color:white;
+    padding:12px;
+    width:auto;
+    font-family: montserrat,arial,tahoma;
+    font-size:16px;
+    font-weight:bold;
+    color:#fff;
+    text-align:center;
+    text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -webkit-appearance: none;
+    border:0;
+    outline:0;
+    -webkit-transition:0.3s ease all;
+  	   -moz-transition:0.3s ease all;
+  	    -ms-transition:0.3s ease all;
+  	     -o-transition:0.3s ease all;
+  	        transition:0.3s ease all;
+  }
+
+  #blue {
+    background-color:#4FBDF9;
+  }
+
+  #blue:hover {
+    background-color:#2FAEF4;
+  }
+
+  #orange {
+    background-color:#F2A255;
+  }
+
+  #orange:hover {
+    background-color:#DE942A;
+  }
+
+  #red {
+    background-color:#FA65A2;
+  }
+
+  #red:hover {
+    background-color:#EC3680;
+  }
+
+  select:focus, select:active {
+    border:0;
+    outline:0;
+  }
+
+  select {
+    border-radius: 40px;
+    width: 90%;
+    margin: 15px;
+  }

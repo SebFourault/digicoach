@@ -18,14 +18,16 @@ import { ToolmodalComponent } from '../toolmodal/toolmodal.component';
 export class HomeComponent implements OnInit {
 
   public tools;
+  public experts;
 
   constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute  ) { }
 
   ngOnInit() {
     this.dataService.getTable("Tools").then( data => this.tools = data );
+    this.dataService.getTable("Experts").then( data => this.experts = data );
   }
 
-  openModal(tool) { 
+  openModal(tool) {
     this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool }, BSModalContext));
   }
 
