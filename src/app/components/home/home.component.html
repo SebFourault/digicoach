@@ -10,49 +10,55 @@
 
 <br><br>
 
-<!-->
 <div class="container">
 
   <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--10-col mdl-cell--2-offset">
-    <p> Je suis
-    <select id="blue">
-      <option>Employé</option>
-      <option>Consultant</option>
-      <option>Marketeux</option>
-      <option>Financeman</option>
-      <option>Etudiant</option>
-      <option>Qqun avide de savoir :)</option>
-    </select>
-    , je cherche à
-    <select id="green">
-      <option>Améliorer mon impact à l'oral</option>
-      <option>Rendre mes livrables plus waow</option>
-      <option>Digitaliser ma gestion de projet</option>
-      <option>Donner de la visibilité à mon projet</option>
-      <option>Mieux collaborer avec mon équipe</option>
-      <option>Dynamiser mes réunions/ateliers</option>
-      <option>Prototyper mes idées</option>
-    </select>
-     et j'ai
-     <select id="red">
-      <option>Pas le temps !</option>
-      <option>5mn pas plus</option>
-      <option>10 petites minutes</option>
-      <option>30mn, le temps d'une réunion efficace</option>
-      <option>1 bonne heure</option>
-      <option>Tout mon temps si ça vaut le coup</option>
-    </select>
-    </p>
+    <div class="mdl-cell mdl-cell--12-col">
+
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--3-col">
+         <h5>Je suis</h5>
+          <select id="blue">
+            <option>Qqun avide de savoir :)</option>
+            <option>Employé</option>
+            <option>Consultant</option>
+            <option>Marketeux</option>
+            <option>Financeman</option>
+            <option>Etudiant</option>
+          </select>
+      </div>
+      <div class="mdl-cell mdl-cell--5-col">
+          <h5>Je cherche à</h5>
+          <select id="orange">
+            <option>Améliorer mon impact à l'oral</option>
+            <option>Rendre mes livrables plus waow</option>
+            <option>Digitaliser ma gestion de projet</option>
+            <option>Donner de la visibilité à mon projet</option>
+            <option>Mieux collaborer avec mon équipe</option>
+            <option>Dynamiser mes réunions/ateliers</option>
+            <option>Prototyper mes idées</option>
+          </select>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+           <h5>Et j'ai</h5>
+           <select id="red">
+            <option>Pas le temps !</option>
+            <option>5mn pas plus</option>
+            <option>10 petites minutes</option>
+            <option>30mn, le temps d'une réunion efficace</option>
+            <option>1 bonne heure</option>
+            <option>Tout mon temps si ça vaut le coup</option>
+          </select>
+        </div>
+        <div class="action-button mdl-cell mdl-cell--1-col ">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" routerLink="/chatbot">
+          <i class="material-icons">arrow_forward</i>
+        </button>
+        </div>
+      </div>
+    </div>
     </div>
 
-    <div class="mdl-cell mdl-cell--1-col mdl-cell--9-offset">
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" routerLink="/chatbot">
-      <i class="material-icons">arrow_forward</i>
-    </button>
-    </div>
-    </div>
-<!-->
 
     <div class="mdl-grid" *ngIf="tools">
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records" (click)="openModal(tool)">

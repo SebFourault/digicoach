@@ -1,3 +1,7 @@
+.action-button {
+  margin-top: 69px;
+}
+
 .container {
   max-width: 1400px;
   margin: auto;
@@ -88,6 +92,13 @@ h4 {
   font-weight: ;
 }
 
+h5 {
+  font-family: Montserrat;
+  font-size: 13pt;
+  color: #93C2F9;
+  font-weight: ;
+}
+
 .tool-card-title {
   margin-top: 0px;
 }
@@ -124,26 +135,32 @@ select {
 }
 
 #blue:hover {
-  background-color:#96DAFF;
+  background-color:#2FAEF4;
 }
 
-#green {
-  background-color:#69F1A6;
+#orange {
+  background-color:#F2A255;
 }
 
-#green:hover {
-  background-color:#B0E4C7;
+#orange:hover {
+  background-color:#DE942A;
 }
 
 #red {
-  background-color:#F94F95;
+  background-color:#FA65A2;
 }
 
 #red:hover {
-  background-color:#F5A5C5;
+  background-color:#EC3680;
 }
 
 select:focus, select:active {
   border:0;
   outline:0;
+}
+
+select {
+  border-radius: 40px;
+  width: 90%;
+  margin: 15px;
 }
