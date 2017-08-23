@@ -1,0 +1,132 @@
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    margin: 15px;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mdl-layout__header {
+  margin-bottom: 20px;
+}
+
+.mdl-layout__header-row {
+  padding: 0 40px 0 20px
+}
+
+.action-button {
+  margin-top: 25px;
+}
+
+.chip-card {
+  margin: 13px;
+}
+
+.tool-card-platform-container {
+  padding: 10px;
+}
+
+.tool-card-information {
+  background-color: #F2F8FF;
+}
+
+.description {
+  margin: 15px;
+}
+
+.position-action-button {
+  float: right;
+}
+
+.tool-logo {
+  width: 60%;
+  border-radius: 5px;
+  margin: auto;
+  max-height: 100px;
+  display: block;
+  position:relative;
+  top:50%;
+  transform: translateY(-50%);
+  margin-top: 15px;
+}
+
+.tool-logo-card {
+  border-radius: 15px;
+  margin: 0 auto;
+  max-height: 100px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  box-shadow: 0 9px 46px 3px rgba(0, 0, 0, 0.05), 0 11px 15px -7px rgba(0, 0, 0, 0), 0 24px 38px 3px rgba(0, 0, 0, 0);
+}
+
+.tool-card-privacy {
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: bold;
+  color: #CEE5FF;
+}
+
+p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: 300;
+  font-style: normal;
+  color: #93C2F9;
+  line-height: 20px;
+}
+
+.time-master-wording {
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: 300;
+  font-style: normal;
+  color: #93C2F9;
+  line-height: 20px;
+  margin-top: 15px;
+}
+
+.time-master {
+  font-family: Montserrat;
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #93C2F9;
+  line-height: 20px;
+}
+
+.tool-card-wording-title-information {
+  margin-left: 15px;
+}
+
+.tool-card-wording-information {
+  margin-left: 25px;
+}
+
+h5 {
+  font-family: Montserrat;
+  font-size: 13pt;
+  color: #93C2F9;
+  font-weight: ;
+}
+
+h4 {
+  font-family: Montserrat;
+  font-size: 20pt;
+  color: #93C2F9;
+  font-weight: ;
+}
