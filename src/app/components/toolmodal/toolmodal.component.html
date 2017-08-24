@@ -31,7 +31,8 @@
 
       <div class="mdl-cell mdl-cell--8-col">
         <h4 class="tool-card-title"> {{ context.tool.fields['Tool'] }} </h4>
-        <p class="tool-card-privacy tool-card-title"> {{ context.tool.fields['Data privacy compliance'] }} </p>
+        <p class="tool-card-privacy"> {{ context.tool.fields['Data privacy compliance'] }} </p>
+        <p> {{ context.tool.fields['Description'] }}</p>
       </div>
 
       <div class="action-button mdl-cell mdl-cell--2-col">
@@ -55,10 +56,18 @@
         src="https://www.youtube.com/embed/75rKK3xyoHM?rel=0&amp;showinfo=0"
         frameborder="0" allowfullscreen></iframe>
       </div>
+
+      <div class="tool-card-expert">
+        <p class="expert-label">Nos experts sur cette outil :</p>
+        <p>
+          <img src="{{ context.tool.fields['Logo'][0]['url'] }}" class="tool-card-expert-picture" *ngIf="context.tool.fields['Logo']">
+          {{ context.tool.fields['Tool'] }}
+        </p>
+      </div>
+
     </div>
 
      <div class="mdl-cell mdl-cell--12-col">
-      <p class="description"> {{ context.tool.fields['Description'] }}</p>
       <span class="mdl-chip chip-card" *ngFor="let usage of context.tool.fields['Usage']">
           <span class="mdl-chip__text"> {{ usage }} </span>
       </span>
