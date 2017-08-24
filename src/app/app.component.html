@@ -59,14 +59,14 @@
                   <option>Etudiant</option>
                 </select>
             </div>
+
             <div class="mdl-cell mdl-cell--5-col">
                 <h5>Je cherche à</h5>
-
-                <select [(ngModel)]="selectedValue" id="orange">
+                <select [(ngModel)]="selectedValue" id="orange" *ngIf="selectedValue">
                   <option *ngFor="let path of paths.records" [ngValue]="path">{{path.fields.Goal}}</option>
                 </select> 
-
             </div>
+
             <div class="mdl-cell mdl-cell--3-col">
                  <h5>Et j'ai</h5>
                  <select id="red">
@@ -78,10 +78,17 @@
                   <option>Tout mon temps si ça vaut le coup</option>
                 </select>
               </div>
+
               <div class="action-button mdl-cell mdl-cell--1-col ">
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" (click)="showLearningPath()">
+                <i class="material-icons">arrow_forward</i>
+              </button>
+              
+              <!-- BOUTON CHATBOT
               <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" routerLink="/chatbot">
                 <i class="material-icons">arrow_forward</i>
               </button>
+              -->
               </div>
             </div>
           </div>
