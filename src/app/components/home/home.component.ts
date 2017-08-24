@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   public experts;
   public learningPath;
   public idLearningPath;
+  public paths;
+  public selectedValue;
 
   constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute  ) { }
 
@@ -36,6 +38,13 @@ export class HomeComponent implements OnInit {
         this.dataService.getTable("LearningPaths").then( data => this.learningPath = data );
       }
 
+    });
+
+
+    this.dataService.getTable("LearningPaths").then( data => {
+      this.paths = data; 
+      var randomGoal = Math.floor((Math.random() * data.records.length));
+      this.selectedValue = this.paths.records[randomGoal];
     });
 
     this.dataService.getTable("Tools").then( data => this.tools = data );

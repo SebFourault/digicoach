@@ -15,12 +15,6 @@ export class AppComponent implements OnInit {
     constructor( private dataService : DataService, private router : Router ) { }
 
     ngOnInit() {
-      this.dataService.getTable("LearningPaths").then( data => {
-        this.paths = data; 
-        console.log(data);
-        var randomGoal = Math.floor((Math.random() * data.records.length));
-        this.selectedValue = this.paths.records[randomGoal];
-      });
     }
 
     showLearningPath() {

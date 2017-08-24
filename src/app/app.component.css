@@ -1,8 +1,4 @@
-.tagline {
-  width: 100%;
-  text-align: center;
 
-}
 
 .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
   padding-right: 0;
@@ -21,33 +17,6 @@
   margin: auto;
 }
 
-h3 {
-  font-family: Montserrat;
-  font-size: 18pt;
-  color: #93C2F9;
-  font-weight: ;
-}
-
-  h4 {
-    font-family: Montserrat;
-    font-size: 16pt;
-    color: #93C2F9;
-    font-weight: ;
-  }
-
-  h5 {
-    font-family: Montserrat;
-    font-size: 13pt;
-    color: #93C2F9;
-    font-weight: ;
-  }
-
-  h6 {
-    font-family: Montserrat;
-    font-size: 10pt;
-    color: #93C2F9;
-    font-weight: ;
-  }
 
   .tool-card-title {
     margin-top: 0px;
