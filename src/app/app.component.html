@@ -61,15 +61,11 @@
             </div>
             <div class="mdl-cell mdl-cell--5-col">
                 <h5>Je cherche à</h5>
-                <select id="orange">
-                  <option>Améliorer mon impact à l'oral</option>
-                  <option>Rendre mes livrables plus waow</option>
-                  <option>Digitaliser ma gestion de projet</option>
-                  <option>Donner de la visibilité à mon projet</option>
-                  <option>Mieux collaborer avec mon équipe</option>
-                  <option>Dynamiser mes réunions/ateliers</option>
-                  <option>Prototyper mes idées</option>
-                </select>
+
+                <select [(ngModel)]="selectedValue" id="orange">
+                  <option *ngFor="let path of paths.records" [ngValue]="path">{{path.fields.Goal}}</option>
+                </select> 
+
             </div>
             <div class="mdl-cell mdl-cell--3-col">
                  <h5>Et j'ai</h5>

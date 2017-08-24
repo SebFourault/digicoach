@@ -14,7 +14,7 @@ export class DataService {
 
 
   getTable(tableName): Promise<any> {
-    var url = this.airtableUrl + tableName + '?view=Gridview&api_key=' + this.apiKey;
+    var url = this.airtableUrl + tableName + '?view=Grid%20view&api_key=' + this.apiKey;
     return this.http.get(url)
           .toPromise()
           .then((response:Response) => response.json() as any)
