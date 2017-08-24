@@ -38,6 +38,10 @@
   float: right;
 }
 
+.expert-picture {
+  float: right;
+}
+
 .tool-card-expert-picture {
   border-radius: 50%;
   width: 40px;
