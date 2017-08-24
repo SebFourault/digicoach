@@ -13,6 +13,12 @@
     height: 100%;
 }
 
+.linked-content-card {
+  display: -webkit-inline-box;
+  margin: 20px;
+  border-radius: 10px;
+}
+
 .mdl-layout__header {
   margin-bottom: 10px;
 }

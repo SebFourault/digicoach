@@ -42,10 +42,12 @@ export class HomeComponent implements OnInit {
   public headerState = "visible";
   public recoState = "hidden";
   public recoTools;
+  public linkedContent;
 
   constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute  ) { }
 
   ngOnInit() {
+    /* IF PARAMETERS
     this.route.params.subscribe((params: Params) => {
       this.idLearningPath = +params['id'];
       console.log(this.idLearningPath);
@@ -56,8 +58,8 @@ export class HomeComponent implements OnInit {
       } else {
         this.dataService.getTable("LearningPaths").then( data => this.learningPath = data );
       }
-
     });
+    */
 
 
     this.dataService.getTable("LearningPaths").then( data => {
@@ -68,6 +70,7 @@ export class HomeComponent implements OnInit {
 
     this.dataService.getTable("Tools").then( data => this.tools = data );
     this.dataService.getTable("Experts").then( data => this.experts = data );
+    this.dataService.getTable("Linked Content").then( data => this.linkedContent = data );
   }
 
   showLearningPath() {
@@ -78,7 +81,13 @@ export class HomeComponent implements OnInit {
   }
 
   openModal(tool) {
-    this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool }, BSModalContext));
+    var experts = this.experts.records.filter(x => {
+      return Array.isArray(x.fields['Tools']) ? x.fields['Tools'].includes(tool.id) : 0;
+    });
+    var linkedContent = this.linkedContent.records.filter(x => {
+      return Array.isArray(x.fields['Tools Linked']) ? x.fields['Tools Linked'].includes(tool.id) : 0;
+    });
+    this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool, experts: experts, linkedContent: linkedContent }, BSModalContext));
   }
 
 }
