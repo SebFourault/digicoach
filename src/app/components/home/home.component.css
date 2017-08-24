@@ -2,6 +2,45 @@
   margin-top: 69px;
 }
 
+.tagline {
+  width: 100%;
+  text-align: center;
+}
+
+h3 {
+  font-family: Montserrat;
+  font-size: 18pt;
+  color: #93C2F9;
+  font-weight: ;
+}
+
+  h4 {
+    font-family: Montserrat;
+    font-size: 16pt;
+    color: #93C2F9;
+    font-weight: ;
+  }
+
+  h5 {
+    font-family: Montserrat;
+    font-size: 13pt;
+    color: #93C2F9;
+    font-weight: ;
+  }
+
+  h6 {
+    font-family: Montserrat;
+    font-size: 10pt;
+    color: #93C2F9;
+    font-weight: ;
+  }
+
+.container-header {
+  width: 80%;
+  padding: 0 10%;
+  background-color: #3f51b5;
+}
+
 .container {
   max-width: 1400px;
   margin: auto;
