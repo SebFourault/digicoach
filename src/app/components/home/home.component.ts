@@ -10,10 +10,26 @@ import { overlayConfigFactory } from "ngx-modialog";
 import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { ToolmodalComponent } from '../toolmodal/toolmodal.component';
 
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+      trigger('slideUp', [
+        state('hidden', style({
+          height: '0',
+          opacity: 0
+        })),
+        state('visible',   style({
+          height: '*',
+          opacity: 1
+        })),
+        transition('hidden => visible', animate('300ms ease-in')),
+        transition('visible => hidden', animate('500ms ease-in-out'))
+      ])
+    ]
 })
 export class HomeComponent implements OnInit {
 
@@ -22,11 +38,16 @@ export class HomeComponent implements OnInit {
   public learningPath;
   public idLearningPath;
   public paths;
-  public selectedValue;
+  public selectedLearningPath;
+  public headerState = "visible";
+  public recoState = "hidden";
+  public recoTools;
+  public linkedContent;
 
   constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute  ) { }
 
   ngOnInit() {
+    /* IF PARAMETERS
     this.route.params.subscribe((params: Params) => {
       this.idLearningPath = +params['id'];
       console.log(this.idLearningPath);
@@ -37,22 +58,36 @@ export class HomeComponent implements OnInit {
       } else {
         this.dataService.getTable("LearningPaths").then( data => this.learningPath = data );
       }
-
     });
+    */
 
 
     this.dataService.getTable("LearningPaths").then( data => {
       this.paths = data; 
       var randomGoal = Math.floor((Math.random() * data.records.length));
-      this.selectedValue = this.paths.records[randomGoal];
+      this.selectedLearningPath = this.paths.records[randomGoal];
     });
 
     this.dataService.getTable("Tools").then( data => this.tools = data );
     this.dataService.getTable("Experts").then( data => this.experts = data );
+    this.dataService.getTable("Linked Content").then( data => this.linkedContent = data );
+  }
+
+  showLearningPath() {
+    this.headerState = "hidden";
+    this.recoState = "visible";
+    this.recoTools = this.tools.records.filter(x => this.selectedLearningPath.fields['Tools'].includes(x.id) );
+    console.log(this.recoTools);
   }
 
   openModal(tool) {
-    this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool }, BSModalContext));
+    var experts = this.experts.records.filter(x => {
+      return Array.isArray(x.fields['Tools']) ? x.fields['Tools'].includes(tool.id) : 0;
+    });
+    var linkedContent = this.linkedContent.records.filter(x => {
+      return Array.isArray(x.fields['Tools Linked']) ? x.fields['Tools Linked'].includes(tool.id) : 0;
+    });
+    this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool, experts: experts, linkedContent: linkedContent }, BSModalContext));
   }
 
 }

@@ -59,15 +59,17 @@
 
       <div class="video-container">
       <iframe class="video"
-        src="https://www.youtube.com/embed/75rKK3xyoHM?rel=0&amp;showinfo=0"
-        frameborder="0" allowfullscreen></iframe>
+        [src]="sanitizer.bypassSecurityTrustResourceUrl(embedify( context.tool.fields['Tuto video link'] ))"
+        frameborder="0" allowfullscreen *ngIf="context.tool.fields['Tuto video link']"></iframe>
       </div>
 
-      <div class="tool-card-expert">
-        <p class="expert-label">Nos experts sur cette outil :</p>
-        <p class="expert-picture">
-          <img src="{{ context.tool.fields['Logo'][0]['url'] }}" class="tool-card-expert-picture" *ngIf="context.tool.fields['Logo']">
-          {{ context.tool.fields['Tool'] }}
+      <div class="tool-card-expert" *ngIf="context.experts[0]">
+        <p class="expert-label">Nos experts sur cet outil :</p>
+        <p>
+          <ng-container *ngFor="let expert of context.experts">
+            <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture" *ngIf="expert.fields['Picture']">
+            {{ expert.fields['Name'] }}
+          </ng-container>
         </p>
       </div>
 
@@ -81,6 +83,22 @@
       <div class="tool-card-information mdl-cell mdl-cell--6-col">
         <h5 class="tool-card-wording-title-information">Pricing</h5>
         <p class="tool-card-wording-information"> {{ context.tool.fields['Pricing'] }} </p>
+      </div>
+
+      <div class="tool-card-information mdl-cell mdl-cell--12-col">
+        <h5 class="tool-card-wording-title-information">Linked Content</h5>
+
+        <ng-container *ngFor="let article of context.linkedContent">
+          <a href="{{ article.fields['Link'] }}" target="_blank">
+            <div class="mdl-card mdl-shadow--2dp linked-content-card">
+              <div class="mdl-card__title mdl-card--expand" [ngStyle]="{'background' : 'url(' + article.fields['Picture'][0]['url'] + ') bottom right 15% no-repeat #46B6AC'}" *ngIf="article.fields['Picture']">
+              </div>
+              <div class="mdl-card__supporting-text">
+                {{ article.fields['Content'] }}
+              </div>
+            </div>
+          </a>
+        </ng-container>
       </div>
 
     </div>
