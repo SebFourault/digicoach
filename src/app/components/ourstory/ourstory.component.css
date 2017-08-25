@@ -1,0 +1,51 @@
+.tagline {
+  width: 100%;
+  text-align: center;
+}
+
+.container-header {
+  width: 80%;
+  padding: 0 10%;
+  background-color: #3f51b5;
+}
+
+.constat-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.constat-text {
+    color: grey;
+    font-family: Montserrat;
+    font-weight: lighter;
+    font-size: 10pt;
+}
+
+.constat-img {
+    margin: auto;
+    width: 40%;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+h3 {
+  font-family: Montserrat;
+  font-size: 18pt;
+  color: #93C2F9;
+}
+
+h6 {
+font-family: Montserrat;
+font-size: 10pt;
+color: #93C2F9;
+}
+
+h2 {
+  font-family: Montserrat;
+  font-size: 18pt;
+  color: #93C2F9;
+  text-align: center;  
+}

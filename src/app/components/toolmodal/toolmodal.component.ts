@@ -43,6 +43,12 @@ export class ToolmodalComponent implements OnInit, CloseGuard, ModalComponent<To
     return url
       .replace(youtubePattern, 'https://www.youtube.com/embed/$1?rel=0&amp;showinfo=0')
       .replace(loomPattern, 'https://www.useloom.com/embed/$1')
-  };
+  }
+
+  crispContactExpert(expert, tool) {
+    window.$crisp.push(["do", "chat:open"]);
+    window.$crisp.push(["do", "message:send", ["text", "Salut!"]]);
+    window.$crisp.push(["do", "message:send", ["text", "J'aimerai poser une question à " + expert.fields['Name'] + " à propos de " + tool.fields['Tool'] + " :)" ]]);
+  }
 
 }

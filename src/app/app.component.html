@@ -6,7 +6,7 @@
           <!-- Title -->
           <span class="mdl-layout-title">
             <a routerLink="/" class="mdl-layout__tab">
-            Augment.me
+            Geek Me Up
             </a>
           </span>
           <div class="mdl-layout-spacer"></div>
@@ -15,9 +15,9 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
             <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" href="">Features</a>
-              <a class="mdl-navigation__link" href="">Story</a>
-              <a class="mdl-navigation__link" href="">Contact</a>
+              <a class="mdl-navigation__link" disabled style="opacity:0.3">My courses</a>
+              <a class="mdl-navigation__link" routerLink="/our-story" >Our Story</a>
+              <a class="mdl-navigation__link" routerLink="/contact" >Contact</a>
             </nav>
           </div>
 
@@ -49,5 +49,16 @@
         <div class="page-content">
           <router-outlet></router-outlet>
         </div>
+
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">GeekMeUp</div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+          </div>
+        </footer>
+
       </main>
     </div>
