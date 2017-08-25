@@ -21,6 +21,8 @@ import { Routing } from './app.routing';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import { ToolmodalComponent } from './components/toolmodal/toolmodal.component';
+import { OurstoryComponent } from './components/ourstory/ourstory.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -37,7 +39,9 @@ export class SafePipe implements PipeTransform {
     ChatbotComponent,
     ToolboxComponent,
     SafePipe,
-    ToolmodalComponent
+    ToolmodalComponent,
+    OurstoryComponent,
+    ContactComponent
   ],
   entryComponents: [ToolmodalComponent],
   imports: [

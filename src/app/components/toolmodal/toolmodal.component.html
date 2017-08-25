@@ -67,8 +67,8 @@
       <div class="tool-card-expert" *ngIf="context.experts[0]">
         <p class="expert-label">Nos experts sur cet outil :</p>
         <p>
-          <ng-container *ngFor="let expert of context.experts">
-            <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture" *ngIf="expert.fields['Picture']">
+          <ng-container *ngFor="let expert of context.experts" >
+            <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture clickable" *ngIf="expert.fields['Picture']" (click)="crispContactExpert(expert, context.tool)">
             {{ expert.fields['Name'] }}
           </ng-container>
         </p>
