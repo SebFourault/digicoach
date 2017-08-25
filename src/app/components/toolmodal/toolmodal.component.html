@@ -51,6 +51,12 @@
         </ng-container>
       </div>
 
+      <div class="mdl-cell mdl-cell--12-col">
+       <span class="mdl-chip chip-card" *ngFor="let usage of context.tool.fields['Usage']">
+           <span class="mdl-chip__text"> {{ usage }} </span>
+       </span>
+      </div>
+
       <div class="video-container">
       <iframe class="video"
         src="https://www.youtube.com/embed/75rKK3xyoHM?rel=0&amp;showinfo=0"
@@ -66,12 +72,6 @@
       </div>
 
     </div>
-
-     <div class="mdl-cell mdl-cell--12-col">
-      <span class="mdl-chip chip-card" *ngFor="let usage of context.tool.fields['Usage']">
-          <span class="mdl-chip__text"> {{ usage }} </span>
-      </span>
-     </div>
 
       <div class="tool-card-information mdl-cell mdl-cell--6-col">
         <h5 class="tool-card-wording-title-information">Killing Features</h5>
