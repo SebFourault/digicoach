@@ -42,6 +42,13 @@
       </div>
 
       <div class="mdl-cell mdl-cell--12-col tool-card-platform-icon-container">
+
+      <div class="mdl-cell mdl-cell--12-col">
+       <span class="mdl-chip chip-card" *ngFor="let usage of context.tool.fields['Usage']">
+           <span class="mdl-chip__text"> {{ usage }} </span>
+       </span>
+      </div>
+
       <div class="tool-card-platform-container">
         <ng-container *ngFor="let platform of context.tool.fields['Plateforme']">
           <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
@@ -49,12 +56,6 @@
           <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
           <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
         </ng-container>
-      </div>
-
-      <div class="mdl-cell mdl-cell--12-col">
-       <span class="mdl-chip chip-card" *ngFor="let usage of context.tool.fields['Usage']">
-           <span class="mdl-chip__text"> {{ usage }} </span>
-       </span>
       </div>
 
       <div class="video-container">
@@ -90,11 +91,13 @@
 
         <ng-container *ngFor="let article of context.linkedContent">
           <a href="{{ article.fields['Link'] }}" target="_blank">
-            <div class="mdl-card mdl-shadow--2dp linked-content-card">
-              <div class="mdl-card__title mdl-card--expand" [ngStyle]="{'background' : 'url(' + article.fields['Picture'][0]['url'] + ') bottom right 15% no-repeat #46B6AC'}" *ngIf="article.fields['Picture']">
+            <div class="mdl-card mdl-shadow--2dp linked-content-card tool-article-card">
+              <div class="mdl-card__title mdl-card--expand article-img-container">
+                <img src="{{ article.fields['Picture'][0]['url'] }}" class="article-card-img" *ngIf="article.fields['Picture']">
               </div>
-              <div class="mdl-card__supporting-text">
+              <div>
                 {{ article.fields['Content'] }}
+              <div class="article-text-container"></div>
               </div>
             </div>
           </a>
