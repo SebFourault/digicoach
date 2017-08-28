@@ -59,39 +59,11 @@
 
   <div class="mdl-grid tagline" [@slideUp]="recoState" *ngIf="selectedLearningPath">
     <div class="mdl-cell mdl-cell--12-col">
+      <!--
       <h3> C'est parti pour {{ selectedLearningPath.fields['Goal'] }} ! </h3>
-      <p> {{ selectedLearningPath.fields['Problem'] }} <br> {{ selectedLearningPath.fields['Conviction'] }} <br> {{ selectedLearningPath.fields['Learning Path'] }} </p>
+      <p> {{ selectedLearningPath.fields['Problem'] }} <br> {{ selectedLearningPath.fields['Conviction'] }} <br> {{ selectedLearningPath.fields['Learning Path'] }} </p> -->
+      <app-chatbot [learningPath]="finalLearningPath" [recoTools]="recoTools"></app-chatbot>
     </div>
-
-    <!-- Tools recommandés -->
-    <ng-container *ngIf="recoTools">
-    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of recoTools">
-      <div class="tool-logo-card clickable" (click)="openModal(tool)">
-        <img class="tool-card-star" *ngIf="tool.fields['Staff pick']" src="../../../assets/img/plateforme/star_ico.svg">
-        <img src="{{ tool.fields['Logo'][0]['url'] }}" class="tool-logo" *ngIf="tool.fields['Logo']">
-      </div>
-
-      <div class="tool-card-content clickable" (click)="openModal(tool)">
-        <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
-        <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }}</p>
-
-        <p class="truc"> {{ tool.fields['Description'] }}</p>
-
-        <span class="mdl-chip" *ngFor="let usage of tool.fields['Usage']">
-            <span class="mdl-chip__text"> {{ usage }} </span>
-        </span>
-        <br>
-        <span class="tool-card-platform-icon-container">
-          <ng-container *ngFor="let platform of tool.fields['Plateforme']">
-            <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
-            <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg">
-            <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
-            <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
-          </ng-container>
-        </span>
-      </div>
-    </div>
-    </ng-container>
 
   </div>
 

@@ -1,16 +1,43 @@
 <div class="chatbot-container mdl-grid">
-  <div class="chatbot-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell" [ngClass]="this.iframeView == 0 ? 'mdl-cell--8-col mdl-cell--2-offset' : 'mdl-cell--4-col'">
+  <div class="chatbot-content content mdl-color-text--grey-800 mdl-cell" [ngClass]="this.iframeView == 0 ? 'mdl-cell--10-col mdl-cell--1-offset' : 'mdl-cell--4-col'">
 
-    <ul class="ChatLog" id="chatlog">
+    <ul #scrollMe class="ChatLog" id="chatlog">
       <ng-container *ngFor="let message of chatlog">
-        <li *ngIf="message.emiter == 'bot'" class="ChatLog__entry"><img class="ChatLog__avatar" src="https://dl.airtable.com/ScxEZgzR9eOlYDCLfMmA_full_boy%20(2).png" /><p class="ChatLog__message"> {{ message.content }} </p></li>
+        <li *ngIf="message.emiter == 'bot' && message.type=='text'" class="ChatLog__entry"><img class="ChatLog__avatar" src="../assets/img/logo-square.png" /><p class="ChatLog__message"> {{ message.content.text }} </p></li>
         <li *ngIf="message.emiter == 'user'" class="ChatLog__entry ChatLog__entry_mine"><p class="ChatLog__message"> {{ message.content }} </p></li>
+
+        <li *ngIf="message.emiter == 'bot' && message.type=='quickreply'" class="ChatLog__entry" [ngClass]="message.hidden == true ? 'hidden' : ''">
+          <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
+          <ng-container *ngFor="let quickReply of message.content">
+            <a class="ChatLog__quickReplies clickable" (click)="sendEvent(quickReply)">{{ quickReply.text }} </a> 
+          </ng-container>
+        </li>
+
+        <li *ngIf="message.emiter == 'bot' && message.type=='tools'" class="ChatLog__entry">
+          <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
+
+          <!-- Tools recommandés -->
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-phone tool-card" *ngFor="let tool of message.content">
+            <div class="tool-logo-card clickable" (click)="openModal(tool)">
+              <img class="tool-card-star" *ngIf="tool.fields['Staff pick']" src="../../../assets/img/plateforme/star_ico.svg">
+              <img src="{{ tool.fields['Logo'][0]['url'] }}" class="tool-logo" *ngIf="tool.fields['Logo']">
+            </div>
+
+            <div class="tool-card-content clickable" (click)="openModal(tool)">
+              <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
+              <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }}</p>
+
+              <p class="truc"> {{ tool.fields['Description'] }}</p>
+
+            </div>
+          </div>
+        </li>
       </ng-container>
     </ul>
 
     <div class="user-message-div">
     <form id="send-message" (keydown)="send($event)">
-      <input class="user-message-input" id="user-message-input" placeholder="En quoi puis-je vous aider ?" autocomplete="off" [(ngModel)]="userInput" [ngModelOptions]="{standalone: true}">
+      <input class="user-message-input" id="user-message-input" placeholder="..." autocomplete="off" [(ngModel)]="userInput" [ngModelOptions]="{standalone: true}">
       <div id="icon-send">
         <i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i>
       </div>

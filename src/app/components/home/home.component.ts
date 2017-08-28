@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   public recoState = "hidden";
   public recoTools;
   public linkedContent;
+  public finalLearningPath;
 
   constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute  ) { }
 
@@ -77,7 +78,7 @@ export class HomeComponent implements OnInit {
     this.headerState = "hidden";
     this.recoState = "visible";
     this.recoTools = this.tools.records.filter(x => this.selectedLearningPath.fields['Tools'].includes(x.id) );
-    console.log(this.recoTools);
+    this.finalLearningPath = this.selectedLearningPath;
   }
 
   openModal(tool) {
