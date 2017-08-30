@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { trigger,state, style, animate,transition } from '@angular/animations';
 
 
@@ -21,21 +21,108 @@ import { trigger,state, style, animate,transition } from '@angular/animations';
     ])
   ]
 })
-export class ChatbotComponent implements OnInit {
+export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
 
   public userInput;
-  public state = "YES_EXPECTED";
-  public chatlog = [{emiter: 'bot', type:'text', content: 'Hey salut !'}, {emiter: 'bot', type:'text', content: "Moi c'est Ratus, ton coach pour les prochaines 5mn :)"}, {emiter: 'bot', type:'text', content: "Prêt à faire un exercice rapide ?"}];
+  // public state = "YES_EXPECTED";
+  public state = {};
+  public chatlog = [];
   public iframeView = 0;
   public iframeUrl;
+
+  @Input() learningPath;
+  public _learningPath;
+  @Input() recoTools;
+
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // When values are transmitted, reload the component to make the conversation start
+    this._learningPath = changes.learningPath.currentValue;
+    if(this._learningPath && changes.recoTools.currentValue ) {
+      console.log(this.recoTools);
+      var welcomeDialog = this.parseBBcode(this._learningPath.fields['Problem']);
+      this.postMultipleBotMessages(welcomeDialog);
+    }
+  }
+
+  ngAfterViewChecked() {        
+      this.refreshScrollToBottom();        
+  } 
 
 
+  postMultipleBotMessages(messages) {
+
+    console.log(messages);
+
+    var timer = 1000;
+    messageLoop:
+    for (var i = 0; i < messages.length; i++) {
+
+      switch (messages[i].type) {
+        case "text":
+          timer += messages[i].content.text.length*5;
+          this.postBotMessage(messages[i], timer, 1);
+          break;
+        case "quickreply":
+          timer += 1000;
+          this.postBotMessage(messages[i], timer, 1);
+          this.state['remainingConv'] = messages.slice(i+1, messages.length);
+          break messageLoop;
+        case "tools":
+          timer += 1500;
+          this.postBotMessage({emiter: 'bot', type:'tools', content:this.recoTools }, timer, 1);
+          break;
+      }
+    }
+  }
+
+  parseBBcode(messages) {
+    var result = [];
+    var messageLines = messages.split(">>");
+    for (var i = 0; i < messageLines.length; i++) {
+      var type = messageLines[i].split(">")[0].toLowerCase();
+      var message = {};
+      message['text'] = messageLines[i].split(">")[1];
+      if(type == "quickreply") {
+        var quickReplyArray = message['text'].split(";");
+        delete message['text'];
+        for (var j = 0; j < quickReplyArray.length; j++) {
+          message[j] = {};
+          message[j]['text'] =  quickReplyArray[j].split(" = ")[0];
+          message[j]['payload'] =  quickReplyArray[j].split(" = ")[1];
+        }
+        message = Object.keys(message).map(function(key) { return message[key]; }); // To make it iterable, we convert the object to an array
+      }
+      result.push({emiter:'bot', type:type, content:message})
+    }
+    return result;
+  }
+
+  sendEvent(quickReply) {
+    this.hideQuickReplies();
+    this.postUserMessage(quickReply.text);
+    switch (true) {
+      case (quickReply.payload.indexOf('CONTINUE') >= 0) :
+        console.log("continue payload");
+        this.postMultipleBotMessages( this.state['remainingConv'] );
+        break;
+      case (quickReply.payload.indexOf('SHOWLEARNINGPATH') >= 0) :
+        this.postMultipleBotMessages(this.parseBBcode(">>TEXT> Allez hop, voici les 3 outils dont je te parle :) >>TOOLS> Joseph >>QUICKREPLY> Commencer l'aventure = STARTLESSON >>TEXT> Coming soon ;)"));
+        break;
+    }
+  }
+
+  hideQuickReplies() {
+    for (var i = 0; i < this.chatlog.length; i++) {
+      if( this.chatlog[i].type == "quickreply" ) { this.chatlog[i]['hidden'] = true; }
+    }
+  }
 
   send(event) {
     if(event.keyCode == 13) {
@@ -66,10 +153,9 @@ openIframe() {
 
 postBotMessage(msg, time, typing){
 
-  window.setTimeout( function(){
-    this.chatlog.push({emiter: 'bot', type:'text', content: msg});
+  window.setTimeout( data => {
+    this.chatlog.push(msg);
     this.refreshTypingLoader(typing);
-  	this.refreshScrollToBottom();
   }, time);
 }
 
@@ -85,8 +171,15 @@ postBotImage(img, time, typing){
 }
 
 showQuickReplies(replies, time){
-  window.setTimeout( function(){
-    /*
+
+  window.setTimeout( data => {
+    this.chatlog.push({emiter: 'bot', type:'quickreplies', content: replies});
+    this.refreshTypingLoader(0);
+  	this.refreshScrollToBottom();
+  }, time);
+
+   /*window.setTimeout( function(){
+   
     $('#chatlog').append('<div class="blank-avatar"></div>');
     for (var i = 0; i < replies.length; i++) {
       $('#chatlog').append('<a class="ChatLog__quickReplies" href="' + replies[i] + '">' + prettyQuickReply(replies[i]) + '</a>');
@@ -103,8 +196,8 @@ showQuickReplies(replies, time){
     }
     refreshTypingLoader(0);
     refreshScrollToBottom();
-*/
-  }, time);
+
+  }, time);*/
 }
 
 postUserMessage(msg){
@@ -134,8 +227,7 @@ refreshTypingLoader(typing){
 }
 
 refreshScrollToBottom(){
-  // scrollToAnchor("bottom-anchor");
-  document.getElementById("chatlog").scrollIntoView(false);
+  this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
 }
 
 }
