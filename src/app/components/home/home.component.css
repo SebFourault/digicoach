@@ -29,20 +29,31 @@ h3 {
   }
 
   h6 {
-    font-family: Montserrat;
-    font-size: 10pt;
+    font-family: Roboto;
+    font-size: 13pt;
+    font-weight: 300;
     color: #93C2F9;
-    font-weight: ;
   }
 
 .container-header {
-  width: 80%;
+  /* width: 80%;
   padding: 0 10%;
-  background-color: rgba(0, 0, 0, 0.32);
-  background: url(../../../assets/img/banner.png);
+   background-color: rgba(0, 0, 0, 0.32);
+  background: url(../../../assets/img/banner.png); 
+  background-color: #3f51b5;
   background-position: left center;
   background-repeat:no-repeat;
+  background-size: cover; */
+  background-image: url(../../../assets/img/wave-hero-background.svg);
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 0 10% 11% 10%;
+}
+
+.logo {
+  width: calc(100px + 10%);
+  margin-top: 30px;
 }
 
 .container {

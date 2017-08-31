@@ -4,6 +4,13 @@
   padding-right: 0;
 }
 
+.custom-header {
+  background-image: url(../assets/img/wave-hero-background.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
 .home_header_large {
 
 }

@@ -29,6 +29,7 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
   public chatlog = [];
   public iframeView = 0;
   public iframeUrl;
+  public typing = 1;
 
   @Input() learningPath;
   public _learningPath;
@@ -66,12 +67,12 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
 
       switch (messages[i].type) {
         case "text":
-          timer += messages[i].content.text.length*5;
+          timer += messages[i].content.text.length*15;
           this.postBotMessage(messages[i], timer, 1);
           break;
         case "quickreply":
-          timer += 1000;
-          this.postBotMessage(messages[i], timer, 1);
+          timer += 500;
+          this.postBotMessage(messages[i], timer, 0);
           this.state['remainingConv'] = messages.slice(i+1, messages.length);
           break messageLoop;
         case "tools":
@@ -107,13 +108,14 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
   sendEvent(quickReply) {
     this.hideQuickReplies();
     this.postUserMessage(quickReply.text);
+    this.typing = 1;
     switch (true) {
       case (quickReply.payload.indexOf('CONTINUE') >= 0) :
         console.log("continue payload");
         this.postMultipleBotMessages( this.state['remainingConv'] );
         break;
       case (quickReply.payload.indexOf('SHOWLEARNINGPATH') >= 0) :
-        this.postMultipleBotMessages(this.parseBBcode(">>TEXT> Allez hop, voici les 3 outils dont je te parle :) >>TOOLS> Joseph >>QUICKREPLY> Commencer l'aventure = STARTLESSON >>TEXT> Coming soon ;)"));
+        this.postMultipleBotMessages(this.parseBBcode(">>TEXT> Allez hop, voici les 3 outils dont je te parle :) >>TOOLS> Joseph >>QUICKREPLY> Commencer l'aventure = CONTINUE >>TEXT> Coming soon ;)"));
         break;
     }
   }
@@ -155,7 +157,8 @@ postBotMessage(msg, time, typing){
 
   window.setTimeout( data => {
     this.chatlog.push(msg);
-    this.refreshTypingLoader(typing);
+    this.typing = typing;
+    // this.refreshTypingLoader(typing);
   }, time);
 }
 
