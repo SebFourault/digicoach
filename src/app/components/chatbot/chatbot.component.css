@@ -43,7 +43,7 @@ ul.ChatLog {
 .ChatLog {
   width:100%;
   margin: 0 auto;
-  padding: 0;
+  padding: 1em;
   height: 500px;
   overflow-y: auto;
 }
@@ -72,7 +72,7 @@ ul.ChatLog {
 }
 
 .ChatLog .ChatLog__entry {
-  margin: .5em;
+  padding: 0.5em;
 }
 
 .ChatLog__entry {
@@ -83,7 +83,7 @@ ul.ChatLog {
 }
 
 .ChatLog__entry.ChatLog__entry_mine {
-  flex-direction: row-reverse;  
+  flex-direction: row-reverse;
 }
 
 .ChatLog__avatar {
@@ -93,10 +93,10 @@ ul.ChatLog {
   height: 50px;
   width: 50px;
   border-radius: 25px;
-  
+
 }
 
-.ChatLog__entry.ChatLog__entry_mine 
+.ChatLog__entry.ChatLog__entry_mine
 .ChatLog__avatar {
   display: none;
 }
@@ -134,9 +134,13 @@ a.ChatLog__quickReplies{
   border: 1px solid #fff;
   padding: .5em 1em;
   border-radius: 20px;
-  font-weight: lighter;
   margin: 0.3em 0em 0 1em;
   text-decoration: none;
+
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .blank-avatar{
@@ -148,10 +152,15 @@ a.ChatLog__quickReplies{
 .ChatLog__message {
   border: 1px solid white;
   background-color: white;
-  padding: .5em 1em;
+  padding: 0.9em 1.4em;
   border-radius: 20px;
-  font-weight: lighter;
-  max-width: 70%;
+
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: 300;
+  font-style: normal;
+  color: #93C2F9;
+  line-height: 20px;
 }
 
 .ChatLog__message a {
@@ -202,9 +211,10 @@ a.ChatLog__quickReplies{
 }
 
 .typing-loader {
-  width: 20px;
+  width: 30px;
   float: left;
   margin-left: 90px;
+  margin-top: 20px;
 }
 
 .user-message-div {

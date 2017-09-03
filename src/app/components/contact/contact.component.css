@@ -18,7 +18,6 @@
   font-family: Montserrat;
   font-size: 8pt;
   color: #0062ad;
-  font-weight: bold;
 }
 
 .constat-text-left {
@@ -29,8 +28,10 @@
 }
 
 .constat-img {
-  margin: -20px;
-  width: 130%;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50vh;
+  transform: translateY(-50%);
 }
 
 .constat-img-top {
@@ -43,23 +44,50 @@
   margin: auto;
 }
 
+.container-fact {
+  padding: 10px;
+  background-color: white;
+  margin: -80px 10px 80px 10px;
+  border-radius: 20px;
+  box-shadow: 0 9px 46px 3px rgba(0, 0, 0, 0.05), 0 11px 15px -7px rgba(0, 0, 0, 0), 0 24px 38px 3px rgba(0, 0, 0, 0);
+  max-width: 1280px;
+  position: relative;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+}
+
 .constat1-background-cell {
   min-height: 300px;
+  background: url(../../../assets/img/contact_1.png);
   background-color: #04BFBF;
-  padding-top: 20px;
-  overflow: hidden;
+  padding: 0 10%;
+  background-position: left center;
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-size: 80%;
 }
 
 .constat2-background-cell {
   min-height: 300px;
+  background: url(../../../assets/img/contact_2.png);
   background-color: #D9D9D9;
-  overflow: hidden;
+  padding: 0 10%;
+  background-position: right center;
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-size: 80%;
 }
 
 .constat3-background-cell {
   min-height: 300px;
+  background: url(../../../assets/img/contact_3.png);
   background-color: #04BFBF;
-  overflow: hidden;
+  padding: 0 10%;
+  background-position: left center;
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-size: 80%;
 }
 
 .constat-container-text-right {
@@ -76,6 +104,8 @@
   margin-top: 40vh;
   transform: translateY(-50%);
   display: table;
+  float: left;
+  position: static;
 }
 
 .constat-head-title {
@@ -93,8 +123,14 @@ h3 {
 h4 {
   font-family: Montserrat;
   font-size: 16pt;
-  color: white;
+  color: #003056;
   margin-bottom: 40px;
+}
+
+h5 {
+  font-family: Montserrat;
+  font-size: 12pt;
+  color: #92b1ff;
 }
 
 h6 {
@@ -113,9 +149,13 @@ h2 {
 .container-pricing {
   padding: 10px;
   background-color: white;
-  margin: -80px 80px 80px 80px;
+  margin: -80px 10px 80px 10px;
   border-radius: 20px;
   box-shadow: 0 9px 46px 3px rgba(0, 0, 0, 0.05), 0 11px 15px -7px rgba(0, 0, 0, 0), 0 24px 38px 3px rgba(0, 0, 0, 0);
+  max-width: 1280px;
+  position: relative;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -10%);
 }
 
 ul {
@@ -178,6 +218,22 @@ ul {
   list-style-type: none;
   color: #59a6ff;
   margin-top: 0px;
+}
+
+.pricing-cost {
+  text-align: center;
+  list-style-type: none;
+  color: white;
+  margin-top: 0px;
+  text-transform: uppercase;
+  background-color: #9ec9fb;
+  margin: 5px;
+  padding: 5px;
+  width: 70px;
+  border-radius: 5px;
+  position: relative;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .pricing-img {

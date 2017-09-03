@@ -27,7 +27,7 @@
           <h5>Je cherche à</h5>
           <select [(ngModel)]="selectedLearningPath" id="orange" *ngIf="selectedLearningPath">
             <option *ngFor="let path of paths.records" [ngValue]="path">{{path.fields.Goal}}</option>
-          </select> 
+          </select>
       </div>
 
       <div class="mdl-cell mdl-cell--3-col">
@@ -44,9 +44,9 @@
 
         <div class="action-button mdl-cell mdl-cell--1-col ">
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" (click)="showLearningPath()">
-          <i class="material-icons">arrow_forward</i>
+          <i class="material-icons material-icon-header">arrow_forward</i>
         </button>
-        
+
         <!-- BOUTON CHATBOT
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" routerLink="/chatbot">
           <i class="material-icons">arrow_forward</i>
@@ -68,7 +68,7 @@
   </div>
 
 </div>
-  
+
 
 <div class="container">
 
@@ -86,18 +86,18 @@
 
           <p class="truc"> {{ tool.fields['Description'] }}</p>
 
-          <span class="mdl-chip" *ngFor="let usage of tool.fields['Usage']">
+          <span class="label-usage" *ngFor="let usage of tool.fields['Usage']">
               <span class="mdl-chip__text"> {{ usage }} </span>
           </span>
           <br>
-          <span class="tool-card-platform-icon-container">
+          <div class="tool-card-platform-icon-container">
             <ng-container *ngFor="let platform of tool.fields['Plateforme']">
               <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
               <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg">
               <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
               <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
             </ng-container>
-          </span>
+          </div>
         </div>
       </div>
 
