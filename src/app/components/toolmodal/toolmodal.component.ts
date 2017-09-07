@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DataService } from '../../services/data/data.service';
 
 import { DialogRef, ModalComponent, CloseGuard } from 'ngx-modialog';
 import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
@@ -17,7 +18,7 @@ export class ToolmodalComponent implements OnInit, CloseGuard, ModalComponent<To
 
   context: ToolmodalContext;
 
-  constructor(public dialog: DialogRef<ToolmodalContext>, public sanitizer: DomSanitizer) { 
+  constructor(public dialog: DialogRef<ToolmodalContext>, public sanitizer: DomSanitizer, private dataService : DataService) { 
     this.context = dialog.context;
     dialog.setCloseGuard(this);
     this.context.size = 'lg';

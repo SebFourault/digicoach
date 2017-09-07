@@ -12,4 +12,9 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
+  crispMessage(text) {
+    window.$crisp.push(["do", "chat:open"]);
+    window.$crisp.push(["do", "message:send", ["text", text]]);
+  }
+
 }

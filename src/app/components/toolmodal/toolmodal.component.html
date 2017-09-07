@@ -45,7 +45,7 @@
 
       <div class="mdl-cell mdl-cell--12-col">
        <span class="label-usage" *ngFor="let usage of context.tool.fields['Usage']">
-           <span class="mdl-chip__text"> {{ usage }} </span>
+           <span class="mdl-chip__text" [style.color]="dataService.getTagColor(usage, context.tags)" *ngIf="context.tags" > {{ usage }} </span>
        </span>
       </div>
 

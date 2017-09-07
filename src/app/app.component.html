@@ -15,9 +15,9 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
             <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" disabled style="opacity:0.3">My courses</a>
-              <a class="mdl-navigation__link" routerLink="/our-story" >Our Story</a>
-              <a class="mdl-navigation__link" routerLink="/contact" >Contact</a>
+              <a class="mdl-navigation__link" disabled style="opacity:0.3">Mes cours</a>
+              <a class="mdl-navigation__link" routerLink="/our-story" >Nos convictions</a>
+              <a class="mdl-navigation__link" routerLink="/contact" >Notre projet</a>
             </nav>
           </div>
 
@@ -45,9 +45,9 @@
           <a class="mdl-navigation__link" href="">Link</a>
         </nav>
       </div>
-      <main class="mdl-layout__content">
+      <main class="mdl-layout__content" #outlet>
         <div class="page-content">
-          <router-outlet></router-outlet>
+          <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
         </div>
 
         <footer class="mdl-mini-footer custom-footer">

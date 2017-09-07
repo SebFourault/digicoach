@@ -30,7 +30,8 @@
 
 .constat-text {
   font-family: Montserrat;
-  font-size: 8pt;
+  font-size: 11pt;
+  font-weight: 100;
   color: #0062ad;
 }
 
@@ -131,10 +132,11 @@
   text-align: center;
 }
 
-h3 {
+h1 {
   font-family: Montserrat;
-  font-size: 18pt;
-  color: #93C2F9;
+  color: #003056;
+  text-transform: uppercase;
+  font-size: 23pt;
 }
 
 h4 {
@@ -155,4 +157,12 @@ h2 {
   font-size: 18pt;
   color: #93C2F9;
   text-align: center;
+}
+
+.mdl-button.call-to-action {
+  border-radius: 40px;
+  padding: 30px 40px;
+  line-height: 0;
+  width: 100%;
+  margin-top: -50px;
 }

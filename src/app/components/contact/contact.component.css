@@ -16,7 +16,8 @@
 
 .constat-text {
   font-family: Montserrat;
-  font-size: 8pt;
+  font-size: 11pt;
+  font-weight: 100;
   color: #0062ad;
 }
 
@@ -242,4 +243,12 @@ ul {
   top: 50%; left: 50%;
   transform: translate(-50%, -65%);
   margin-top: 100px;
+}
+
+.mdl-button.call-to-action {
+  border-radius: 40px;
+  padding: 30px 40px;
+  line-height: 0;
+  width: 100%;
+  margin-top: -50px;
 }

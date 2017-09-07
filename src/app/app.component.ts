@@ -23,6 +23,11 @@ export class AppComponent implements OnInit  {
       this.launchCrisp();
     }
 
+    // When page change, scroll to top
+    onActivate(e, outlet){
+      outlet.scrollTop = 0;
+    } 
+
     launchCrisp() {
       window.$crisp=[];
       window.CRISP_WEBSITE_ID="0e02e462-13be-43f6-ba32-88df97c307d9";

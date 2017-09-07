@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
 
   public tools;
   public experts;
+  public tags;
+
   public learningPath;
   public idLearningPath;
   public paths;
@@ -72,6 +74,7 @@ export class HomeComponent implements OnInit {
     this.dataService.getTable("Tools").then( data => this.tools = data );
     this.dataService.getTable("Experts").then( data => this.experts = data );
     this.dataService.getTable("Linked Content").then( data => this.linkedContent = data );
+    this.dataService.getTable("Tags").then( data => this.tags = data );
   }
 
   showLearningPath() {
@@ -88,7 +91,7 @@ export class HomeComponent implements OnInit {
     var linkedContent = this.linkedContent.records.filter(x => {
       return Array.isArray(x.fields['Tools Linked']) ? x.fields['Tools Linked'].includes(tool.id) : 0;
     });
-    this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool, experts: experts, linkedContent: linkedContent }, BSModalContext));
+    this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool, experts: experts, tags: this.tags, linkedContent: linkedContent }, BSModalContext));
   }
 
 }

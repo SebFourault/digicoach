@@ -61,4 +61,11 @@ export class DataService {
     return (date != "") ? myDate.getDate() + " " + monthNames[myDate.getMonth()] : "No " + label ;
   }
 
+  getTagColor(tagName, tags) {
+    for (var i = 0; i < tags.records.length; i++) {
+      if(tags.records[i].fields.Name == tagName ) { return tags.records[i].fields.Color; }
+    }
+    return "lightgrey";
+  }
+
 }

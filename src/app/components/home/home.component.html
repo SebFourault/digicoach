@@ -87,7 +87,7 @@
           <p class="truc"> {{ tool.fields['Description'] }}</p>
 
           <span class="label-usage" *ngFor="let usage of tool.fields['Usage']">
-              <span class="mdl-chip__text"> {{ usage }} </span>
+              <span class="mdl-chip__text" [style.color]="dataService.getTagColor(usage, tags)" *ngIf="tags" > {{ usage }} </span>
           </span>
           <br>
           <div class="tool-card-platform-icon-container">
