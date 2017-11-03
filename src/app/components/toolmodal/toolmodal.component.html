@@ -60,7 +60,7 @@
 
       <div class="video-container">
       <iframe class="video"
-        [src]="sanitizer.bypassSecurityTrustResourceUrl(embedify( context.tool.fields['Tuto video link'] ))"
+        [src]="embedify( context.tool.fields['Tuto video link'] ) | safe"
         frameborder="0" allowfullscreen *ngIf="context.tool.fields['Tuto video link']"></iframe>
       </div>
 
@@ -86,7 +86,7 @@
         <p class="tool-card-wording-information"> {{ context.tool.fields['Pricing'] }} </p>
       </div>
 
-      <div class="tool-card-information mdl-cell mdl-cell--12-col">
+      <div class="tool-card-information mdl-cell mdl-cell--12-col" *ngIf="context.linkedContent[0]">
         <h5 class="tool-card-wording-title-information">Linked Content</h5>
 
         <ng-container *ngFor="let article of context.linkedContent">
