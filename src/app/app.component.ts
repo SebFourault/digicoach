@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, NavigationEnd} from "@angular/router";
+import {GoogleAnalyticsEventsService} from './services/google-analytics.service/google-analytics.service';"./google-analytics-events.service";
 
 declare global {
     interface Window { $crisp: any; CRISP_WEBSITE_ID: any; }
@@ -17,7 +19,14 @@ export class AppComponent implements OnInit  {
     public paths;
     public selectedValue;
 
-    constructor( ) { }
+    constructor(public router: Router, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) {
+      this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          ga('set', 'page', event.urlAfterRedirects);
+          ga('send', 'pageview');
+        }
+      });
+    }
 
     ngOnInit() {
       this.launchCrisp();
@@ -26,7 +35,7 @@ export class AppComponent implements OnInit  {
     // When page change, scroll to top
     onActivate(e, outlet){
       outlet.scrollTop = 0;
-    } 
+    }
 
     launchCrisp() {
       window.$crisp=[];
@@ -36,6 +45,10 @@ export class AppComponent implements OnInit  {
       s.src="https://client.crisp.chat/l.js";
       s.async=true;
       d.getElementsByTagName("head")[0].appendChild(s);
+    }
+
+    submitEvent() {
+      this.googleAnalyticsEventsService.emitEvent("testCategory", "testAction", "testLabel", 10);
     }
 
 }

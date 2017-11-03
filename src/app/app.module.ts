@@ -10,6 +10,7 @@ import { HomeComponent} from './components/home/home.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { DataService } from './services/data/data.service';
+import { GoogleAnalyticsEventsService } from './services/google-analytics.service/google-analytics.service';
 
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
@@ -30,7 +31,7 @@ export class SafePipe implements PipeTransform {
   transform(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-} 
+}
 
 @NgModule({
   declarations: [
@@ -53,7 +54,10 @@ export class SafePipe implements PipeTransform {
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    GoogleAnalyticsEventsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
