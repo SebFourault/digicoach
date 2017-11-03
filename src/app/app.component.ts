@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, NavigationEnd} from "@angular/router";
-import {GoogleAnalyticsEventsService} from './services/google-analytics.service/google-analytics.service';"./google-analytics-events.service";
+import {GoogleAnalyticsEventsService} from './services/google-analytics-events.service/google-analytics-events.service';
 
 declare global {
     interface Window { $crisp: any; CRISP_WEBSITE_ID: any; }
 }
+
+declare var ga: Function;
 
 @Component({
   selector: 'app-root',
@@ -12,21 +14,22 @@ declare global {
   styleUrls: ['./app.component.css']
 })
 
-
-
 export class AppComponent implements OnInit  {
 
     public paths;
     public selectedValue;
-
-    constructor(public router: Router, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) {
-      this.router.events.subscribe(event => {
+    constructor(private _router: Router, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) {
+      this._router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           ga('set', 'page', event.urlAfterRedirects);
           ga('send', 'pageview');
         }
       });
     }
+
+  submitEvent() { // event fired from home.component.html element (button, link, ... )
+    this.googleAnalyticsEventsService.emitEvent("testCategory", "testAction", "testLabel", 10);
+  }
 
     ngOnInit() {
       this.launchCrisp();
@@ -45,10 +48,6 @@ export class AppComponent implements OnInit  {
       s.src="https://client.crisp.chat/l.js";
       s.async=true;
       d.getElementsByTagName("head")[0].appendChild(s);
-    }
-
-    submitEvent() {
-      this.googleAnalyticsEventsService.emitEvent("testCategory", "testAction", "testLabel", 10);
     }
 
 }
