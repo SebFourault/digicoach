@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data/data.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import {Router, NavigationEnd} from "@angular/router";
+import {GoogleAnalyticsEventsService} from '../../services/google-analytics-events.service/google-analytics-events.service';
 
 import { ViewContainerRef } from '@angular/core';
 import { Overlay } from 'ngx-modialog';
@@ -11,6 +13,8 @@ import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { ToolmodalComponent } from '../toolmodal/toolmodal.component';
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
+
+declare var ga: Function;
 
 @Component({
   selector: 'app-home',
@@ -47,7 +51,7 @@ export class HomeComponent implements OnInit {
   public linkedContent;
   public finalLearningPath;
 
-  constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute  ) { }
+  constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute, public googleAnalyticsEventsService: GoogleAnalyticsEventsService  ) { }
 
   ngOnInit() {
     /* IF PARAMETERS
@@ -66,7 +70,7 @@ export class HomeComponent implements OnInit {
 
 
     this.dataService.getTable("LearningPaths").then( data => {
-      this.paths = data; 
+      this.paths = data;
       var randomGoal = Math.floor((Math.random() * data.records.length));
       this.selectedLearningPath = this.paths.records[randomGoal];
     });
@@ -85,6 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   openModal(tool) {
+    //this.googleAnalyticsEventsService.emitEvent("testCategory", "testAction", "testLabel", 10);
     var experts = this.experts.records.filter(x => {
       return Array.isArray(x.fields['Tools']) ? x.fields['Tools'].includes(tool.id) : 0;
     });
