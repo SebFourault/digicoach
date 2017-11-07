@@ -11,6 +11,7 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { DataService } from './services/data/data.service';
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service/google-analytics-events.service';
+import { FilterComponent } from './components/filter.component/filter.component';
 
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
@@ -42,7 +43,8 @@ export class SafePipe implements PipeTransform {
     SafePipe,
     ToolmodalComponent,
     OurstoryComponent,
-    ContactComponent
+    ContactComponent,
+    FilterComponent
   ],
   entryComponents: [ToolmodalComponent],
   imports: [
