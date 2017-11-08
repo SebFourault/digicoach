@@ -38,7 +38,6 @@ export class DataService {
       return this.http.get(url)
           .map((response: Response) => {
               var rows = response.json() as any[];
-              rows.shift();
               return rows;
           });
   }
@@ -57,7 +56,7 @@ export class DataService {
     return result;
   }
 
-  getDistinctValues(myTable, myColumn, wave): any[] {
+  getDistinctValues(myTable, myColumn): any[] {
     var distinctValues = [];
     for (var i = 0; i < myTable.length; i++) {
       if ((distinctValues.indexOf(myTable[i].fields[myColumn]) == -1) && (myTable[i].fields[myColumn] != "")) {

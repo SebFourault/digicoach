@@ -72,8 +72,10 @@
 
 <div class="container">
 
+    <filter (change)="onCriteriasChanged($event)" #filter></filter>
+
     <div class="mdl-grid" *ngIf="tools">
-      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records">
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
 
         <div class="tool-logo-card clickable" (click)="openModal(tool)">
           <img class="tool-card-star" *ngIf="tool.fields['Staff pick']" src="../../../assets/img/plateforme/star_ico.svg">

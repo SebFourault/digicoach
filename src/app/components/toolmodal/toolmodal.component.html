@@ -76,17 +76,17 @@
 
     </div>
 
-      <div class="tool-card-information mdl-cell mdl-cell--6-col">
+      <div class="tool-card-information mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
         <h5 class="tool-card-wording-title-information">Killing Features</h5>
         <p class="tool-card-wording-information"> {{ context.tool.fields['Killing Features'] }} </p>
       </div>
 
-      <div class="tool-card-information mdl-cell mdl-cell--6-col">
+      <div class="tool-card-information mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
         <h5 class="tool-card-wording-title-information">Pricing</h5>
         <p class="tool-card-wording-information"> {{ context.tool.fields['Pricing'] }} </p>
       </div>
 
-      <div class="tool-card-information mdl-cell mdl-cell--12-col" *ngIf="context.linkedContent[0]">
+      <div class="tool-card-information mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" *ngIf="context.linkedContent[0]">
         <h5 class="tool-card-wording-title-information">Linked Content</h5>
 
         <ng-container *ngFor="let article of context.linkedContent">

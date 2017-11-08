@@ -26,6 +26,9 @@ import { ToolmodalComponent } from './components/toolmodal/toolmodal.component';
 import { OurstoryComponent } from './components/ourstory/ourstory.component';
 import { ContactComponent } from './components/contact/contact.component';
 
+// Pipes
+import { HavingPipe } from "app/pipes/having/having.pipe";
+
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
@@ -44,7 +47,8 @@ export class SafePipe implements PipeTransform {
     ToolmodalComponent,
     OurstoryComponent,
     ContactComponent,
-    FilterComponent
+    FilterComponent,
+    HavingPipe
   ],
   entryComponents: [ToolmodalComponent],
   imports: [
