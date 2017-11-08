@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response }     from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -27,8 +28,19 @@ export class DataService {
     return Promise.reject(error.message || error);
   }
 
-
-
+  /**
+   * Retourne les lignes d'une table
+   * @param tableName
+   * @returns Le tableau des lignes de la table sous la forme Observable<any>
+   */
+  observeTable(tableName): Observable<any> {
+      var url = this.airtableUrl + tableName + '?view=Grid%20view&api_key=' + this.apiKey;
+      return this.http.get(url)
+          .map((response: Response) => {
+              var rows = response.json() as any[];
+              return rows;
+          });
+  }
 
   // Agregation functions
 
@@ -44,11 +56,11 @@ export class DataService {
     return result;
   }
 
-  getDistinctValues(myTable, myColumn: string): any {
+  getDistinctValues(myTable, myColumn): any[] {
     var distinctValues = [];
-    for (var i = 0; i < Object.keys(myTable).length; i++) {
-      if ((distinctValues.indexOf(myTable[i][myColumn]) == -1) && (myTable[i][myColumn] != "")) {
-        distinctValues.push(myTable[i][myColumn]);
+    for (var i = 0; i < myTable.length; i++) {
+      if ((distinctValues.indexOf(myTable[i].fields[myColumn]) == -1) && (myTable[i].fields[myColumn] != "")) {
+        distinctValues.push(myTable[i].fields[myColumn]);
       }
     }
     return distinctValues;
