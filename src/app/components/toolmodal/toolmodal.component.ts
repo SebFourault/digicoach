@@ -5,8 +5,11 @@ import { DataService } from '../../services/data/data.service';
 import { DialogRef, ModalComponent, CloseGuard } from 'ngx-modialog';
 import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 
+
 export class ToolmodalContext extends BSModalContext {
   public tool;
+  public experts;
+  public linkedContent;
 }
 
 @Component({

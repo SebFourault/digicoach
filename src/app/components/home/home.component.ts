@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   openModal(tool) {
-    //this.googleAnalyticsEventsService.emitEvent("testCategory", "testAction", "testLabel", 10);
+    this.googleAnalyticsEventsService.emitEvent("ToolCard", "open", tool.fields['Tool'], 10);
     var experts = this.experts.records.filter(x => {
       return Array.isArray(x.fields['Tools']) ? x.fields['Tools'].includes(tool.id) : 0;
     });

@@ -30,33 +30,31 @@
       </div>
 
       <div class="mdl-cell mdl-cell--8-col">
-        <h4 class="tool-card-title"> {{ context.tool.fields['Tool'] }} </h4>
-        <p class="tool-card-privacy"> {{ context.tool.fields['Data privacy compliance'] }} </p>
+        <h4 class="tool-card-title"> {{ context.tool.fields['Tool'] }} 
+          <div class="tool-card-platform-container">
+            <ng-container *ngFor="let platform of context.tool.fields['Plateforme']">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg" title="Android">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg" title="Bureau">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg" title="iOs">
+              <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg" title="Web">
+            </ng-container>
+          </div>
+        </h4>
+        <p class="tool-card-privacy"> 
+            <span class="label-usage" *ngFor="let usage of context.tool.fields['Usage']">
+                <span [style.color]="dataService.getTagColor(usage, context.tags)" *ngIf="context.tags" > {{ usage }} </span>
+            </span> 
+          Data Policy - {{ context.tool.fields['Data privacy compliance'] }} </p>
         <p> {{ context.tool.fields['Description'] }}</p>
       </div>
 
       <div class="action-button mdl-cell mdl-cell--2-col">
         <a class="mdl-button position-action-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" href="{{ context.tool.fields['Link'] }}" target="_blank">
-          <i class="material-icons">file_download</i>
+          <i class="material-icons">open_in_new</i>
         </a>
       </div>
 
-      <div class="mdl-cell mdl-cell--12-col tool-card-platform-icon-container">
-
-      <div class="mdl-cell mdl-cell--12-col">
-       <span class="label-usage" *ngFor="let usage of context.tool.fields['Usage']">
-           <span class="mdl-chip__text" [style.color]="dataService.getTagColor(usage, context.tags)" *ngIf="context.tags" > {{ usage }} </span>
-       </span>
-      </div>
-
-      <div class="tool-card-platform-container">
-        <ng-container *ngFor="let platform of context.tool.fields['Plateforme']">
-          <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
-          <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg">
-          <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
-          <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
-        </ng-container>
-      </div>
+      <div class="mdl-cell mdl-cell--6-col tool-card-platform-icon-container">
 
       <div class="video-container">
       <iframe class="video"
@@ -65,26 +63,31 @@
       </div>
 
       <div class="tool-card-expert" *ngIf="context.experts[0]">
-        <p class="expert-label">Nos experts sur cet outil :</p>
+        <p class="expert-label">Une question sur {{ context.tool.fields['Tool'] }} ? Chat avec un de nos experts !</p>
         <p>
           <ng-container *ngFor="let expert of context.experts" >
-            <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture clickable" *ngIf="expert.fields['Picture']" (click)="crispContactExpert(expert, context.tool)">
-            {{ expert.fields['Name'] }}
+            <span class="clickable" (click)="crispContactExpert(expert, context.tool)">
+              <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture clickable" *ngIf="expert.fields['Picture']" >
+              {{ expert.fields['Name'] }}
+            </span>
           </ng-container>
         </p>
       </div>
 
     </div>
+    <div class="mdl-cell mdl-cell--6-col tool-card-platform-icon-container">
+      <div class="row">
+        <div class="tool-card-information mdl-cell mdl-cell--12-col">
+          <h5 class="tool-card-wording-title-information">Killing Features</h5>
+          <p class="tool-card-wording-information"> {{ context.tool.fields['Killing Features'] }} </p>
+        </div>
 
-      <div class="tool-card-information mdl-cell mdl-cell--6-col">
-        <h5 class="tool-card-wording-title-information">Killing Features</h5>
-        <p class="tool-card-wording-information"> {{ context.tool.fields['Killing Features'] }} </p>
+        <div class="tool-card-information mdl-cell mdl-cell--12-col">
+          <h5 class="tool-card-wording-title-information">Pricing</h5>
+          <p class="tool-card-wording-information"> {{ context.tool.fields['Pricing'] }} </p>
+        </div>
       </div>
-
-      <div class="tool-card-information mdl-cell mdl-cell--6-col">
-        <h5 class="tool-card-wording-title-information">Pricing</h5>
-        <p class="tool-card-wording-information"> {{ context.tool.fields['Pricing'] }} </p>
-      </div>
+    </div>
 
       <div class="tool-card-information mdl-cell mdl-cell--12-col" *ngIf="context.linkedContent[0]">
         <h5 class="tool-card-wording-title-information">Linked Content</h5>
