@@ -44,7 +44,7 @@
             <span class="label-usage" *ngFor="let usage of context.tool.fields['Usage']">
                 <span [style.color]="dataService.getTagColor(usage, context.tags)" *ngIf="context.tags" > {{ usage }} </span>
             </span> 
-          Data Policy - {{ context.tool.fields['Data privacy compliance'] }} </p>
+          Data Policy : {{ context.tool.fields['Data privacy compliance'] }} </p>
         <p> {{ context.tool.fields['Description'] }}</p>
       </div>
 
@@ -54,60 +54,69 @@
         </a>
       </div>
 
+      
       <div class="mdl-cell mdl-cell--6-col tool-card-platform-icon-container">
+        <div class="mdl-grid">
+          <div class="tool-card-information mdl-cell mdl-cell--12-col">
+            <h5 class="tool-card-wording-title-information">Killing Features</h5>
+              <ul class="tool-card-wording-information">
+                <li *ngFor="let feature of context.tool.fields['Killing Features'].split('-') | slice:1"> {{ feature }} </li>
+              </ul>
+          </div>
 
-      <div class="video-container">
-      <iframe class="video"
-        [src]="embedify( context.tool.fields['Tuto video link'] ) | safe"
-        frameborder="0" allowfullscreen *ngIf="context.tool.fields['Tuto video link']"></iframe>
-      </div>
-
-      <div class="tool-card-expert" *ngIf="context.experts[0]">
-        <p class="expert-label">Une question sur {{ context.tool.fields['Tool'] }} ? Chat avec un de nos experts !</p>
-        <p>
-          <ng-container *ngFor="let expert of context.experts" >
-            <span class="clickable" (click)="crispContactExpert(expert, context.tool)">
-              <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture clickable" *ngIf="expert.fields['Picture']" >
-              {{ expert.fields['Name'] }}
-            </span>
-          </ng-container>
-        </p>
-      </div>
-
-    </div>
-    <div class="mdl-cell mdl-cell--6-col tool-card-platform-icon-container">
-      <div class="row">
-        <div class="tool-card-information mdl-cell mdl-cell--12-col">
-          <h5 class="tool-card-wording-title-information">Killing Features</h5>
-          <p class="tool-card-wording-information"> {{ context.tool.fields['Killing Features'] }} </p>
-        </div>
-
-        <div class="tool-card-information mdl-cell mdl-cell--12-col">
-          <h5 class="tool-card-wording-title-information">Pricing</h5>
-          <p class="tool-card-wording-information"> {{ context.tool.fields['Pricing'] }} </p>
+          <div class="tool-card-information mdl-cell mdl-cell--12-col">
+            <h5 class="tool-card-wording-title-information">Pricing</h5>
+            <ul class="tool-card-wording-information">
+                <li *ngFor="let pricing of context.tool.fields['Pricing'].split('-') | slice:1"> {{ pricing }} </li>
+              </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-      <div class="tool-card-information mdl-cell mdl-cell--12-col" *ngIf="context.linkedContent[0]">
+      <div class="mdl-cell mdl-cell--6-col tool-card-platform-icon-container">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <div class="video-container">
+            <iframe class="video"
+              [src]="embedify( context.tool.fields['Tuto video link'] ) | safe"
+              frameborder="0" allowfullscreen *ngIf="context.tool.fields['Tuto video link']"></iframe>
+            </div>
+
+            <div class="tool-card-expert" *ngIf="context.experts[0]">
+              <p class="expert-label">Une question sur {{ context.tool.fields['Tool'] }} ? Chat avec un de nos experts !</p>
+              <p>
+                <ng-container *ngFor="let expert of context.experts" >
+                  <span class="clickable" (click)="crispContactExpert(expert, context.tool)">
+                    <img src="{{ expert.fields['Picture'][0]['url'] }}" class="tool-card-expert-picture clickable" *ngIf="expert.fields['Picture']" >
+                    {{ expert.fields['Name'] }}
+                  </span>
+                </ng-container>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+<hr>
+      <div class="mdl-cell mdl-cell--12-col" *ngIf="context.linkedContent[0]">
         <h5 class="tool-card-wording-title-information">Linked Content</h5>
 
-        <ng-container *ngFor="let article of context.linkedContent">
-          <a href="{{ article.fields['Link'] }}" target="_blank">
-            <div class="mdl-card mdl-shadow--2dp linked-content-card tool-article-card">
+        <div class="mdl-grid">
+          <div *ngFor="let article of context.linkedContent" class="mdl-cell mdl-cell--4-col">
+            <a href="{{ article.fields['Link'] }}" target="_blank">
+              <div class="mdl-card mdl-shadow--2dp linked-content-card tool-article-card">
 
-            <div class="mdl-card__title mdl-card--expand article-img-container">
-              <img src="{{ article.fields['Picture'][0]['url'] }}" class="article-card-img" *ngIf="article.fields['Picture']">
-            </div>
+              <div class="mdl-card__title mdl-card--expand article-img-container">
+                <img src="{{ article.fields['Picture'][0]['url'] }}" class="article-card-img" *ngIf="article.fields['Picture']">
+              </div>
 
-            <div class="tool-card-article-text-container">
-              {{ article.fields['Content'] }}
-            </div>
+              <div class="tool-card-article-text-container">
+                {{ article.fields['Content'] }}
+              </div>
 
-
-            </div>
-          </a>
-        </ng-container>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
 
     </div>

@@ -1,16 +1,16 @@
 .video-container {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: 0;
   padding-bottom: 51%;
-  margin: 10px 15px 5px 15px;
 }
 .video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .linked-content-card {
@@ -21,6 +21,7 @@
 
 .mdl-layout__header {
   margin-bottom: 10px;
+  border-radius: 23px 23px 0px 0px;
 }
 
 .mdl-layout__header-row {
@@ -63,7 +64,6 @@
 .tool-card-information {
   background-color: #F2F8FF;
   border-radius: 10px;
-  padding: 1px 0px;
 }
 
 .position-action-button {
@@ -97,10 +97,9 @@
 
 .tool-article-card {
   border-radius: 15px;
-  margin: 0 auto;
-  margin: 20px;
+  margin: 0;
   background-color: white;
-  width: 512px;
+  width: 100%;
   height: 100px;
   position: relative;
   box-shadow: 0 9px 46px 3px rgba(0, 0, 0, 0.05), 0 11px 15px -7px rgba(0, 0, 0, 0), 0 24px 38px 3px rgba(0, 0, 0, 0);
@@ -161,7 +160,13 @@ p {
 }
 
 .tool-card-wording-information {
-  margin-left: 25px;
+  padding: 0 40px 10px 40px;
+  font-family: Montserrat;
+  font-size: 9pt;
+  font-weight: 300;
+  font-style: normal;
+  color: #93C2F9;
+  line-height: 20px;
 }
 
 .tool-card-article-text-container {
