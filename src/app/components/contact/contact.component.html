@@ -1,11 +1,3 @@
-<div class="container-header">
-  <div class="mdl-grid tagline">
-    <div class="mdl-cell mdl-cell--12-col">
-      <h3> Contact </h3>
-      <h6> Qui on est et comment on peut vous aider </h6>
-    </div>
-  </div>
-</div>
 
 <div class="constat1-background-cell">
   <div class="mdl-grid">
@@ -32,7 +24,7 @@
 
     <div class="mdl-cell mdl-cell--6-col constat-container-text-right container-fact">
       <h4> Notre background ?</h4>
-      <p class="constat-text"> A l'ère du digital tout évolue super vite et on n'a très rapidement plus les bons outils et les bonnes pratiques pour faire naître nos projets efficacement. Ce qu'apprennent les étudiants en école est déjà obsolète lorsqu'il arrivent sur le marché du travail </p>
+      <p class="constat-text"> Fort de 5 ans d’expérience en tant qu’évangélistes du nouveau paradigme salarial, nous avons forgé notre méthodologie et expertise en accompagnant la transformation numérique des entreprises du CAC40 </p>
     </div>
 
   </div>
@@ -48,10 +40,10 @@
   <div class="mdl-grid container-pricing">
 
   <div class="mdl-cell mdl-cell--12-col">
-    <h2 class="pricing-title-head">Pricing</h2>
+    <h2 class="pricing-title-head"> Prêt à vous aider ! </h2>
   </div>
 
-    <div class="mdl-cell mdl-cell--3-col pricing-table">
+    <div class="mdl-cell mdl-cell--4-col pricing-table">
     <div class="pricing-content">
       <img src="https://s22.postimg.org/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img">
     <div class="pricing-txt-container">
@@ -60,9 +52,12 @@
       <ul class="pricing-txt">
         <li>Accès gratuit à la majorité des cours</li>
         <li>Accès illimité à notre sélection de milliers d'outils</li>
+        <li>Sollicitation de notre pool d'experts en cas de question </li>
+        <li> &nbsp; </li>
+        <li> &nbsp; </li>
       </ul>
-      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect">
-        Sign up
+      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect" routerLink="/">
+        Try me
       </button>
 
       <p class="pricing-description">Free</p>
@@ -70,56 +65,43 @@
     </div>
     </div>
 
-    <div class="mdl-cell mdl-cell--3-col pricing-table">
+    <div class="mdl-cell mdl-cell--4-col pricing-table">
     <div class="pricing-content">
       <img src="https://s28.postimg.org/ju5bnc3x9/plane.png" alt="" class="pricing-img">
     <div class="pricing-txt-container">
       <h4 class="pricing-title">Master Geek</h4>
-      <h5 class="pricing-cost">150$</h5>
+      <h5 class="pricing-cost">1 BEER</h5>
       <ul class="pricing-txt">
-        <li>Accès premium pour les cours advanced</li>
-        <li>Sélection personnalisé d'outils</li>
+        <li>Accès premium aux cours Advanced</li>
+        <li>Sélection personnalisée d'outils</li>
+        <li>Accès privilégié à la communauté d'experts</li>
+        <li>Programmes de formation personnalisés </li>
+        <li> &nbsp; </li>
       </ul>
-      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect">
+      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect" (click)="crispMessage('Bonjour, j aimerai en savoir plus sur l offre Master Geek :) ')">
         Sign up
       </button>
 
-      <p class="pricing-description">1 month offer</p>
+      <p class="pricing-description">1 month free</p>
     </div>
     </div>
     </div>
 
-    <div class="mdl-cell mdl-cell--3-col pricing-table">
+    <div class="mdl-cell mdl-cell--4-col pricing-table">
     <div class="pricing-content">
       <img src="https://s21.postimg.org/tpm0cge4n/space-ship.png" alt="" class="pricing-img">
     <div class="pricing-txt-container">
-      <h4 class="pricing-title">Advanced Entreprise</h4>
-      <h5 class="pricing-cost">400$</h5>
+      <h4 class="pricing-title">Rocket Entreprise</h4>
+      <h5 class="pricing-cost">CUSTOM</h5>
       <ul class="pricing-txt">
         <li>Plateforme personnalisée en marque blanche </li>
-        <li>(Legacy, data safety, compliance...)</li>
+        <li>Intégration derrière un SSO</li>
+        <li>Geek Sessions en physique avec nos experts</li>
+        <li>Suivi d'indicateurs de Geekisation d'une équipe</li>
+        <li>Création de cours sur mesures</li>
       </ul>
-      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect">
-        Sign up
-      </button>
-
-      <p class="pricing-description">Trial for free</p>
-    </div>
-    </div>
-    </div>
-
-    <div class="mdl-cell mdl-cell--3-col pricing-table">
-    <div class="pricing-content">
-      <img src="https://s21.postimg.org/tpm0cge4n/space-ship.png" alt="" class="pricing-img">
-    <div class="pricing-txt-container">
-      <h4 class="pricing-title">Advanced Entreprise</h4>
-      <h5 class="pricing-cost">1500$</h5>
-      <ul class="pricing-txt">
-        <li>Plateforme personnalisée en marque blanche </li>
-        <li>(Legacy, data safety, compliance...)</li>
-      </ul>
-      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect">
-        Sign up
+      <button class=" pricing-button mdl-button mdl-js-button mdl-js-ripple-effect" (click)="crispMessage('Bonjour, j aimerai en savoir plus sur l offre Entreprise :) ')">
+        Chat with me now
       </button>
 
       <p class="pricing-description">Trial for free</p>

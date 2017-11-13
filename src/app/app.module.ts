@@ -10,6 +10,8 @@ import { HomeComponent} from './components/home/home.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { DataService } from './services/data/data.service';
+import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service/google-analytics-events.service';
+import { FilterComponent } from './components/filter.component/filter.component';
 
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
@@ -24,13 +26,16 @@ import { ToolmodalComponent } from './components/toolmodal/toolmodal.component';
 import { OurstoryComponent } from './components/ourstory/ourstory.component';
 import { ContactComponent } from './components/contact/contact.component';
 
+// Pipes
+import { HavingPipe } from "app/pipes/having/having.pipe";
+
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
   transform(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-} 
+}
 
 @NgModule({
   declarations: [
@@ -41,7 +46,9 @@ export class SafePipe implements PipeTransform {
     SafePipe,
     ToolmodalComponent,
     OurstoryComponent,
-    ContactComponent
+    ContactComponent,
+    FilterComponent,
+    HavingPipe
   ],
   entryComponents: [ToolmodalComponent],
   imports: [
@@ -53,7 +60,10 @@ export class SafePipe implements PipeTransform {
     ModalModule.forRoot(),
     BootstrapModalModule
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    GoogleAnalyticsEventsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

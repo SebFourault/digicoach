@@ -6,18 +6,18 @@
           <!-- Title -->
           <span class="mdl-layout-title">
             <a routerLink="/" class="mdl-layout__tab">
-            Geek Me Up
+              <img class="logo-shortcut" src="../assets/img/logo-shortcut.png">
             </a>
           </span>
           <div class="mdl-layout-spacer"></div>
 
-          <div class="mdl-layout__header-row home_header_large">
+          <div class="mdl-layout__header-row home_header_large mdl-layout--large-screen-only">
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation -->
             <nav class="mdl-navigation">
-              <a class="mdl-navigation__link" disabled style="opacity:0.3">My courses</a>
-              <a class="mdl-navigation__link" routerLink="/our-story" >Our Story</a>
-              <a class="mdl-navigation__link" routerLink="/contact" >Contact</a>
+              <a class="mdl-navigation__link" disabled style="opacity:0.3">Mes cours</a>
+              <a class="mdl-navigation__link" routerLink="/our-story" >Nos convictions</a>
+              <a class="mdl-navigation__link" routerLink="/contact" >Notre projet</a>
             </nav>
           </div>
 
@@ -34,20 +34,20 @@
           </div>
         </div>
       </header>
-      <div class="mdl-layout__drawer">
+      <div class="mdl-layout__drawer mdl-layout--small-screen-only">
         <span class="mdl-layout-title">
-          Augment.me
+          GeekMeUp
         </span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" routerLink="/" >Home</a>
+          <a class="mdl-navigation__link" disabled style="opacity:0.3" >Mes Cours</a>
+          <a class="mdl-navigation__link" routerLink="/our-story" >Nos convictions</a>
+          <a class="mdl-navigation__link" routerLink="/contact" >Notre projet</a>
         </nav>
       </div>
-      <main class="mdl-layout__content">
+      <main class="mdl-layout__content" #outlet>
         <div class="page-content">
-          <router-outlet></router-outlet>
+          <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
         </div>
 
         <footer class="mdl-mini-footer custom-footer">

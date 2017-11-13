@@ -1,0 +1,17 @@
+<ng-template #checked><i class="material-icons">check_box</i></ng-template>
+<ng-template #unchecked><i class="material-icons">check_box_outline_blank</i></ng-template>
+
+<div class='mdl-grid'  *ngIf="ready">
+    <span *ngFor="let filter of filters; let i = index">
+        <button id="menu{{i}}" class="mdl-button mdl-js-button" style="border-left: 1px solid #e6e6e6; text-align: right;" *ngIf="filter.Values">
+            <span>{{filter.Name}}</span>
+            <i class="material-icons" style="color: #e6e6e6;">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" attr.for="menu{{i}}" *ngIf="filter.Values">
+            <li *ngFor="let value of filter.Values;" class="mdl-menu__item valign-wrapper" (click)="toggleCriteria(filter.ModelName, value)">
+                <span *ngIf="hasCriteria(filter.ModelName,value);then checked else unchecked"></span>
+                {{value}}
+            </li>
+        </ul>
+    </span>
+</div>

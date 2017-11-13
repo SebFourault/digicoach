@@ -30,6 +30,10 @@
   margin: auto;
 }
 
+.logo-shortcut {
+  width: 40px;
+  margin-left: -23px;
+}
 
 .mdl-layout__content::-webkit-scrollbar-track
 {
