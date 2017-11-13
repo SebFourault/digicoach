@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialDesignDirective } from './directives/material-design.directive/material-design.directive';
 
 import { AppComponent } from './app.component';
 import { HomeComponent} from './components/home/home.component';
@@ -40,6 +41,7 @@ export class SafePipe implements PipeTransform {
 @NgModule({
   declarations: [
     AppComponent,
+    MaterialDesignDirective,
     HomeComponent,
     ChatbotComponent,
     ToolboxComponent,
