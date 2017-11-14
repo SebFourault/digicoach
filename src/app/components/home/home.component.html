@@ -72,7 +72,7 @@
 
 <div class="container">
 
-    <filter (change)="onCriteriasChanged($event)" #filter></filter>
+    <filter (change)="onCriteriasChanged($event)" #filter style="display:none"></filter>
 
     <div class="mdl-grid" *ngIf="tools">
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
@@ -84,7 +84,7 @@
 
         <div class="tool-card-content clickable" (click)="openModal(tool)">
           <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
-          <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }}</p>
+          <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }} </p>
 
           <p class="truc"> {{ tool.fields['Description'] }}</p>
 
