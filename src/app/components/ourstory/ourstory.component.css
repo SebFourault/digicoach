@@ -1,32 +1,49 @@
-.tagline {
-  width: 100%;
+/*
+** Generic classes
+*/
+.center {
   text-align: center;
+  margin: 0 auto;
+}
+.no-padding {
+  padding: 0;
+}
+.no-margin {
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
-.container-header {
-  width: 80%;
-  padding: 0 10%;
-  background-color: #3f51b5;
+@media (min-width: 800px) {
+  .right-align {
+    text-align: right;
+  }
+  .full-width {
+    width: 100%;
+  }
 }
 
-.constat-container {
-    text-align: center;
-    padding: 20px;
-}
+/*
+** CONSTAT SECTION
+** CARDS REDESIGN
+*/
 
-.container-fact {
-  padding: 10px;
-  background-color: white;
-  margin: -80px 10px 80px 10px;
+.constat-card {
+  margin: auto;
+  padding: 25px 50px 50px 50px;
   border-radius: 20px;
   box-shadow: 0 9px 46px 3px rgba(0, 0, 0, 0.05), 0 11px 15px -7px rgba(0, 0, 0, 0), 0 24px 38px 3px rgba(0, 0, 0, 0);
   max-width: 1280px;
-  position: relative;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+  background-color: white;
   opacity: 0.9;
 }
 
+.constat-title {
+  font-family: Montserrat;
+  font-size: 16pt;
+  color: #003056;
+  margin-bottom: 40px;
+  margin-top: 24px;
+}
 
 .constat-text {
   font-family: Montserrat;
@@ -35,128 +52,29 @@
   color: #0062ad;
 }
 
-.constat-text-left {
-  font-family: Montserrat;
-  font-size: 8pt;
-  color: white;
-  font-weight: bold;
-}
-
-.constat-img-right {
-  width: 80%;
-  overflow: hidden;
-  margin-right: -30px;
-  margin-top: 40vh;
-  transform: translateY(-50%);
-  float: right;
-}
-
-.constat-img-left {
-  width: 80%;
-  overflow: hidden;
-  margin-left: -30px;
-  margin-top: 40vh;
-  transform: translateY(-50%);
-  float: left;
-}
-
-.constat-img-top {
-    margin: auto;
-    width: 40%;
-    padding: 25px 50px 25px 50px;
-}
-
-.container {
-  margin: auto;
-}
-
-.constat {
-  background-color: #BADAFF;
-  padding-top: 1px;
-}
-
-.constat1-background-cell {
+.constat-background-cell {
   min-height: 300px;
+  height: 100vh;
+  display: flex;
+  padding: 0 10%;
+  background-repeat:no-repeat !important;
+  background-size: contain;
+  background-size: 80% !important;
+}
+.constat1 {
   background: url(../../../assets/img/constat_1.png);
   background-color: #BADAFF;
-  padding: 0 10%;
   background-position: left center;
-  background-repeat:no-repeat;
-  background-size: contain;
-  background-size: 80%;
 }
-
-.constat2-background-cell {
-  min-height: 300px;
+.constat2 {
   background: url(../../../assets/img/constat_2.png);
   background-color: #04bfbf;
-  padding: 0 10%;
   background-position: right center;
-  background-repeat:no-repeat;
-  background-size: contain;
-  background-size: 80%;
 }
-
-.constat3-background-cell {
-  min-height: 300px;
+.constat3 {
   background: url(../../../assets/img/constat_3.png);
   background-color: #7ecffe;
-  padding: 0 10%;
   background-position: left center;
-  background-repeat:no-repeat;
-  background-size: contain;
-  background-size: 80%;
-}
-
-.constat-container-text-right {
-  text-align: left;
-  padding: 25px 50px 50px 50px;
-  margin-top: 40vh;
-  transform: translateY(-50%);
-  display: table;
-}
-
-.constat-container-text-left {
-  text-align: right;
-  padding: 25px 50px 50px 50px;
-  margin-top: 40vh;
-  transform: translateY(-50%);
-  display: table;
-  float: left;
-  position: static;
-}
-
-.constat-head-title {
-  margin-top: 30px;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-h1 {
-  font-family: Montserrat;
-  color: #003056;
-  text-transform: uppercase;
-  font-size: 23pt;
-}
-
-h4 {
-  font-family: Montserrat;
-  font-size: 16pt;
-  color: #003056;
-  margin-bottom: 40px;
-}
-
-h6 {
-font-family: Montserrat;
-font-size: 10pt;
-color: #0062ad;
-}
-
-h2 {
-  font-family: Montserrat;
-  font-size: 18pt;
-  color: #93C2F9;
-  text-align: center;
 }
 
 .mdl-button.call-to-action {
