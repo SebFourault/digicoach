@@ -6,3 +6,7 @@ body {
 .clickable {
   cursor: pointer;
 }
+
+.modal-content {
+  border-radius: 25px 25px 6px 6px;
+}

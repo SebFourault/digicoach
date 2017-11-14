@@ -1,4 +1,9 @@
 
+/* 
+THIS IS A CUSTOM BOOTSTRAP WITHOUT THE TAG MODIFICATIONS
+IN ORDER NOT TO OVERRIDE MDL LIB
+*/
+
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
@@ -4793,7 +4798,7 @@ button.close {
           background-clip: padding-box;
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 25px 25px 6px 6px;
+  border-radius: 6px;
   outline: 0;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, .5);

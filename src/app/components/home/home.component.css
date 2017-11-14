@@ -10,6 +10,10 @@
   color: #4457c0;
 }
 
+.not-visible {
+  visibility: hidden;
+}
+
 .tagline {
   width: 100%;
   text-align: center;
@@ -22,26 +26,26 @@ h3 {
   font-weight: ;
 }
 
-  h4 {
-    font-family: Montserrat;
-    font-size: 16pt;
-    color: #93C2F9;
-    font-weight: ;
-  }
+h4 {
+  font-family: Montserrat;
+  font-size: 16pt;
+  color: #93C2F9;
+  font-weight: ;
+}
 
-  h5 {
-    font-family: Montserrat;
-    font-size: 13pt;
-    color: #93C2F9;
-    font-weight: ;
-  }
+h5 {
+  font-family: Montserrat;
+  font-size: 13pt;
+  color: #93C2F9;
+  font-weight: ;
+}
 
-  h6 {
-    font-family: Roboto;
-    font-size: 13pt;
-    font-weight: 300;
-    color: #93C2F9;
-  }
+h6 {
+  font-family: Roboto;
+  font-size: 13pt;
+  font-weight: 300;
+  color: #93C2F9;
+}
 
 .container-header {
   width: 80%;
@@ -60,6 +64,7 @@ h3 {
 .logo {
   width: calc(100px + 10%);
   margin-top: 30px;
+  margin-bottom: 20px;
 }
  
 .container {
@@ -155,7 +160,7 @@ p {
   font-size: 9pt;
   font-weight: bold;
   color: #CEE5FF;
-  margin-top: -15px;
+  margin-top: -10px;
 }
 
 h4 {
@@ -235,4 +240,29 @@ select {
   border-radius: 40px;
   width: 90%;
   margin: 15px;
+}
+
+.suggest-tool-icon {
+  color: lightblue;
+  font-size: 60px;
+  width: 60px;
+  margin: 50px auto 0 auto;
+  display: block;
+}
+
+.suggest-tool-label {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.suggest-tool-card {
+  opacity: 0.5;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+.suggest-tool-card:hover {
+  opacity: 1;
 }

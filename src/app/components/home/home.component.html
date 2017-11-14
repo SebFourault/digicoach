@@ -75,31 +75,47 @@
     <filter (change)="onCriteriasChanged($event)" #filter style="display:none"></filter>
 
     <div class="mdl-grid" *ngIf="tools">
-      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
+      <ng-container *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngIf="tool.fields['Published']">
 
-        <div class="tool-logo-card clickable" (click)="openModal(tool)">
-          <img class="tool-card-star" *ngIf="tool.fields['Staff pick']" src="../../../assets/img/plateforme/star_ico.svg">
-          <img src="{{ tool.fields['Logo'][0]['url'] }}" class="tool-logo" *ngIf="tool.fields['Logo']">
+          <div class="tool-logo-card clickable" (click)="openModal(tool)">
+            <img class="tool-card-star" *ngIf="tool.fields['Staff pick']" src="../../../assets/img/plateforme/star_ico.svg">
+            <img src="{{ tool.fields['Logo'][0]['url'] }}" class="tool-logo" *ngIf="tool.fields['Logo']">
+            <img src="../../../assets/img/nologo.png" class="tool-logo" *ngIf="!tool.fields['Logo']">
+          </div>
+
+          <div class="tool-card-content clickable" (click)="openModal(tool)">
+            <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
+            <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }} </p>
+
+            <p class="truc"> {{ tool.fields['Description'] }}</p>
+
+            <span class="label-usage" *ngFor="let usage of tool.fields['Usage']">
+                <span class="mdl-chip__text" [style.color]="dataService.getTagColor(usage, tags)" *ngIf="tags" > {{ usage }} </span>
+            </span>
+            <br>
+            <div class="tool-card-platform-icon-container">
+              <ng-container *ngFor="let platform of tool.fields['Plateforme']">
+                <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
+                <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg">
+                <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
+                <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Card "Add a New Tool" -->
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card">
+
+        <div class="tool-logo-card not-visible clickable" (click)="openUrl('https://airtable.com/shrJf6CZwg1sK9bYR')">
+          <img src="../../../assets/img/nologo.png" class="tool-logo">
         </div>
 
-        <div class="tool-card-content clickable" (click)="openModal(tool)">
-          <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
-          <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }} </p>
-
-          <p class="truc"> {{ tool.fields['Description'] }}</p>
-
-          <span class="label-usage" *ngFor="let usage of tool.fields['Usage']">
-              <span class="mdl-chip__text" [style.color]="dataService.getTagColor(usage, tags)" *ngIf="tags" > {{ usage }} </span>
-          </span>
-          <br>
-          <div class="tool-card-platform-icon-container">
-            <ng-container *ngFor="let platform of tool.fields['Plateforme']">
-              <img class="tool-card-platform-icon" *ngIf="platform == 'Android'" src="../../../assets/img/plateforme/Android_ico.svg">
-              <img class="tool-card-platform-icon" *ngIf="platform == 'Desktop PC'" src="../../../assets/img/plateforme/Windows_ico.svg">
-              <img class="tool-card-platform-icon" *ngIf="platform == 'iOS'" src="../../../assets/img/plateforme/Apple_ico.svg">
-              <img class="tool-card-platform-icon" *ngIf="platform == 'Web'" src="../../../assets/img/plateforme/Web_ico.svg">
-            </ng-container>
-          </div>
+        <div class="tool-card-content suggest-tool-card clickable" (click)="openUrl('https://airtable.com/shrJf6CZwg1sK9bYR')">
+          <i class="material-icons suggest-tool-icon">add_circle</i>
+          <p class="suggest-tool-label"> SUGGEST A NEW TOOL </p>
         </div>
       </div>
 

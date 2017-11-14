@@ -123,6 +123,10 @@ export class HomeComponent implements OnInit {
     this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool, experts: experts, tags: this.tags, linkedContent: linkedContent }, BSModalContext));
   }
 
+  openUrl(url) {
+    window.open(url, "_blank");
+  }
+
   /**
   * Appelé lorsque les criteres de filtre ont été modifiés
   * @param criterias Les nouveaux critères de filtre
