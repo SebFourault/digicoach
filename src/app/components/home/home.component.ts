@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data/data.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import {Router, NavigationEnd} from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+import { ToolsService } from "app/services/tools/tools.service";
 import {GoogleAnalyticsEventsService} from '../../services/google-analytics-events.service/google-analytics-events.service';
 import { ToolCriterias } from 'app/shared/toolcriterias.model';
 
@@ -43,8 +44,8 @@ declare var ga: Function;
     ]
 })
 export class HomeComponent implements OnInit {
-  private allTools: any[];
   public tools: any[];
+  private allTools: any[];
   public experts;
   public tags;
   public ready: Boolean;
@@ -60,22 +61,9 @@ export class HomeComponent implements OnInit {
   public linkedContent;
   public finalLearningPath;
 
-  constructor( private dataService : DataService, public modal: Modal, private route: ActivatedRoute, public googleAnalyticsEventsService: GoogleAnalyticsEventsService  ) { }
+  constructor( private dataService : DataService, private _toolsService: ToolsService, public modal: Modal, private route: ActivatedRoute, public googleAnalyticsEventsService: GoogleAnalyticsEventsService  ) { }
 
-  ngOnInit() {
-    /* IF PARAMETERS
-    this.route.params.subscribe((params: Params) => {
-      this.idLearningPath = +params['id'];
-      console.log(this.idLearningPath);
-
-      if(this.idLearningPath) {
-        this.dataService.getTable("LearningPaths").then( data => this.learningPath = data.filter(x => x.id === this.idLearningPath) );
-        console.log(this.learningPath);
-      } else {
-        this.dataService.getTable("LearningPaths").then( data => this.learningPath = data );
-      }
-    });
-    */
+  ngOnInit(): void {
     this.ready = false;
     // Using promises to fetch tables values
     Promise.all([
@@ -93,20 +81,16 @@ export class HomeComponent implements OnInit {
             console.error(err);
         });
     // Using Observable to fetch values from Tools table
-    Observable.forkJoin([
-        this.dataService.observeTable('Tools')
-    ])
-    .map((results: any[]) => {
-      const tools: any[] = results[0];
-      return tools;
-    })
-    .subscribe( (tools: any[]) => {
-        this.tools = this.allTools = tools;
-     },
-    (error: any) => {
-        console.error(error);
-    });
-    this.ready = true;
+    this._toolsService
+            .list()
+            .subscribe(
+              (tools: any[]) => {
+                this.tools = this.allTools = tools;
+                this.ready = true;
+              },
+             (error: any) => {
+                 console.error(error);
+             });
   }
 
   showLearningPath() {
@@ -140,8 +124,7 @@ export class HomeComponent implements OnInit {
   */
   public onCriteriasChanged(criterias: ToolCriterias): void {
       if (this.allTools)
-        //this.tools = this.allTools.slice(0);
-        this.tools = this.allTools;
+        this.tools['records'] = this.allTools['records'].slice();
   }
 
 }

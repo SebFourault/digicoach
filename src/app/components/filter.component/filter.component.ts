@@ -69,7 +69,7 @@ export class FilterComponent implements OnInit {
                 {
                   Name: 'Staff pick',
                   ModelName: 'StaffPick',
-                  Values: [true, false]
+                  Values: ['Yes', 'No']
                 }
             ];
             // Add Usage, Difficulty, Time to master, Data privacy Compliance to the filters
@@ -116,9 +116,7 @@ export class FilterComponent implements OnInit {
                     this.criterias[filter.ModelName] = filter.Values.slice(0);
                 }
             }
-            this.criterias.Difficulty = ['Padawan'];
             this.change.emit(this.criterias);
-
             this.ready = true;
         });
     }
@@ -143,7 +141,6 @@ export class FilterComponent implements OnInit {
                     this.criterias[name].splice(index, 1);
             }
         }
-
         this.change.emit(this.criterias);
     }
 

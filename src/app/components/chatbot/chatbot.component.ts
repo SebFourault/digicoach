@@ -46,7 +46,7 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
 
   ngOnChanges(changes: SimpleChanges) {
     // When values are transmitted, reload the component to make the conversation start
-    this._learningPath = changes.learningPath.currentValue;
+    this._learningPath = this.learningPath;
     if(this._learningPath) {
       console.log(this.tools);
       var welcomeDialog = this.parseBBcode(this._learningPath.fields['Problem']);
