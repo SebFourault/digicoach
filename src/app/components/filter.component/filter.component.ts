@@ -65,19 +65,19 @@ export class FilterComponent implements OnInit {
                     Name: 'Expert',
                     ModelName: 'Expert',
                     Values: Expert
-                },
+                }/*,
                 {
                   Name: 'Staff pick',
                   ModelName: 'StaffPick',
                   Values: [true, false]
-                }
+                }*/
             ];
             // Add Usage, Difficulty, Time to master, Data privacy Compliance to the filters
             if (results[0]['records'] instanceof Array) {
               var aux1 = results[0]['records'].filter(value => value.fields.Tool != '');
               //Keep ony tools that should be published
               //results[0] = results[0].filter(x => x.fields.Published);
-              for (var i=0; i<this.filters.length-2; i++){
+              for (var i=0; i<this.filters.length-1; i++){
                 var itemList = [];
                 this.filters[i].Values = aux1
                   // Fetch raw data
@@ -116,7 +116,9 @@ export class FilterComponent implements OnInit {
                     this.criterias[filter.ModelName] = filter.Values.slice(0);
                 }
             }
-            this.criterias.Difficulty = ['Padawan'];
+
+            this.criterias.Difficulty = ['Digital Padawan'];
+            //this.criterias.Usage = ['PMO', 'Gamification'];
             this.change.emit(this.criterias);
 
             this.ready = true;
@@ -143,7 +145,6 @@ export class FilterComponent implements OnInit {
                     this.criterias[name].splice(index, 1);
             }
         }
-
         this.change.emit(this.criterias);
     }
 

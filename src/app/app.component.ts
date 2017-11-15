@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, NavigationEnd} from "@angular/router";
 import {GoogleAnalyticsEventsService} from './services/google-analytics-events.service/google-analytics-events.service';
+// Import directives
+import { MaterialDesignDirective } from './directives/material-design.directive/material-design.directive';
 
 declare global {
     interface Window { $crisp: any; CRISP_WEBSITE_ID: any; }

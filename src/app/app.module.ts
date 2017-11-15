@@ -11,6 +11,7 @@ import { HomeComponent} from './components/home/home.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { DataService } from './services/data/data.service';
+import { ToolsService } from "app/services/tools/tools.service";
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service/google-analytics-events.service';
 import { FilterComponent } from './components/filter.component/filter.component';
 
@@ -28,8 +29,6 @@ import { OurstoryComponent } from './components/ourstory/ourstory.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 // Pipes
-import { HavingPipe } from "app/pipes/having/having.pipe";
-
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
@@ -37,6 +36,7 @@ export class SafePipe implements PipeTransform {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
+import { HavingPipe } from "app/pipes/having/having.pipe";
 
 @NgModule({
   declarations: [
@@ -64,6 +64,7 @@ export class SafePipe implements PipeTransform {
   ],
   providers: [
     DataService,
+    ToolsService,
     GoogleAnalyticsEventsService
   ],
   bootstrap: [AppComponent]
