@@ -83,7 +83,6 @@ export class HomeComponent implements OnInit {
               (tools: any[]) => {
                 this.tools = this.allTools = tools;
                 this.ready = true;
-                console.log(this.tools)
               },
              (error: any) => {
                  console.error(error);
@@ -113,7 +112,6 @@ export class HomeComponent implements OnInit {
   * @param criterias Les nouveaux critères de filtre
   */
   public onCriteriasChanged(criterias: ToolCriterias): void {
-      console.log("Criteria clicked")
       if (this.allTools)
         this.tools['records'] = this.allTools['records'].slice();
   }

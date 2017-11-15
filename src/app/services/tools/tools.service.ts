@@ -10,7 +10,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ToolsService {
-    private _tools: any[];
 
     constructor(private _dataService: DataService) { }
 
@@ -23,7 +22,9 @@ export class ToolsService {
             this._dataService.observeTable('Tools')
         ]).map((results: any[]) => {
             const tools: any[] = results[0];
-            this._tools = tools;
+            tools['records'].forEach( (tool: any) => {
+              (tool.fields['Staff pick']) ? tool.fields['Staff pick filter'] = 'Yes' : tool.fields['Staff pick filter'] = 'No';
+            })
             return tools;
         });
     }
