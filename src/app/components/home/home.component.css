@@ -23,28 +23,55 @@ h3 {
   font-family: Montserrat;
   font-size: 18pt;
   color: #93C2F9;
-  font-weight: ;
 }
 
-h4 {
-  font-family: Montserrat;
-  font-size: 16pt;
-  color: #93C2F9;
-  font-weight: ;
-}
-
-h5 {
-  font-family: Montserrat;
-  font-size: 13pt;
-  color: #93C2F9;
-  font-weight: ;
-}
-
-h6 {
+h1 {
   font-family: Roboto;
-  font-size: 13pt;
-  font-weight: 300;
+  font-size: 20pt;
+  font-weight: thin;
   color: #93C2F9;
+}
+
+.selectLessonContainer {
+  margin-bottom: 80px;
+}
+
+.subtitle {
+  font-family: Roboto;
+  font-size: 12pt;
+  font-weight: 100;
+  font-style: normal;
+  color: #80bafe;
+}
+
+.cta-container {
+  width: 484px;
+  display: block; 
+  margin: auto;
+}
+
+.cta-link {
+  text-decoration: none;
+}
+
+.cta-button {
+  display: inline-block;
+  margin: 0 10px;
+  width: 220px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.scroll-down {
+  font-family: Roboto;
+  font-size: 10pt;
+  font-weight: 500;
+  font-style: normal;
+  color: #80bafe;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
 }
 
 .container-header {
@@ -189,14 +216,13 @@ h4 {
   font-family: Montserrat;
   font-size: 16pt;
   color: #93C2F9;
-  font-weight: ;
 }
 
 h5 {
-  font-family: Montserrat;
+  font-family: Roboto;
   font-size: 13pt;
   color: #93C2F9;
-  font-weight: ;
+  text-align: center;
 }
 
 .tool-card-title {
@@ -239,6 +265,8 @@ select {
 
 #orange {
   background-color:#F2A255;
+  font-size: 17px;
+  font-family: Roboto;
 }
 
 #orange:hover {
@@ -260,7 +288,7 @@ select:focus, select:active {
 
 select {
   border-radius: 40px;
-  width: 90%;
+  width: 70%;
   margin: 15px;
 }
 

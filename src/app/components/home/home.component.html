@@ -2,15 +2,17 @@
   <div class="mdl-grid tagline" [@slideUp]="headerState">
     <div class="mdl-cell mdl-cell--12-col">
       <img class="logo" src="../../../assets/img/logo.png">
-    <h6> Ici on apprend à travailler différemment grâce au digital :) </h6>
+      <div [@slideUp]="ctaButtonState">
+        <h1> Apprend à travailler comme un digital native ! </h1> 
+        <p class="subtitle">Ici on apprend à utiliser les meilleurs outils et pratiques du digital pour concevoir, s'organiser, <br>et communiquer comme de vrais startupers </p>
+      </div>
     </div>
   </div>
 
 
   <div class="mdl-grid mdl-layout--large-screen-only" [@slideUp]="headerState">
-    <div class="mdl-cell mdl-cell--12-col">
 
-    <div class="mdl-grid">
+      <!--
       <div class="mdl-cell mdl-cell--3-col">
           <h5>Je suis</h5>
           <select id="blue">
@@ -22,14 +24,34 @@
             <option>Etudiant</option>
           </select>
       </div>
+    -->
 
-      <div class="mdl-cell mdl-cell--5-col">
-          <h5>Je cherche à</h5>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset selectLessonContainer">
+        <div class="cta-container" [@slideUp]="ctaButtonState">
+          <a class="cta-link" scrollTo href="#main-section">
+          <button class="cta-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+              Voir les outils
+            </button>
+          </a>
+          <button class="cta-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="showSelectLesson()">
+              Surprend moi !
+            </button>
+        </div>
+
+        <div [@slideUp]="selectLessonState">
+          <h5> Sélectionne un objectif que tu aimerais bien atteindre, <br> notre assistant s'occupe du reste ! </h5>
           <select [(ngModel)]="selectedLearningPath" id="orange" *ngIf="selectedLearningPath">
-            <option *ngFor="let path of paths.records" [ngValue]="path">{{path.fields.Goal}}</option>
+            <ng-container *ngFor="let path of paths.records">
+              <option [ngValue]="path" [disabled]="!path.fields.Published" >{{path.fields.Goal}}</option>
+            </ng-container>
           </select>
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" (click)="showLearningPath()">
+              <i class="material-icons material-icon-header">arrow_forward</i>
+            </button>
+        </div>
       </div>
 
+      <!-- 
       <div class="mdl-cell mdl-cell--3-col">
             <h5>Et j'ai</h5>
             <select id="red">
@@ -41,20 +63,8 @@
             <option>Tout mon temps si ça vaut le coup</option>
           </select>
         </div>
+      -->
 
-        <div class="action-button mdl-cell mdl-cell--1-col ">
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" (click)="showLearningPath()">
-          <i class="material-icons material-icon-header">arrow_forward</i>
-        </button>
-
-        <!-- BOUTON CHATBOT
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" routerLink="/chatbot">
-          <i class="material-icons">arrow_forward</i>
-        </button>
-        -->
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="mdl-grid tagline" [@slideUp]="recoState" *ngIf="selectedLearningPath">
@@ -67,10 +77,12 @@
 
   </div>
 
+  <a class="scroll-down" scrollTo href="#main-section" > Explore la boite à outil <br> <i class="material-icons">keyboard_arrow_down</i> </a> 
+
 </div>
 
 
-<div class="container">
+<div class="container" id="main-section" >
 
     <filter (change)="onCriteriasChanged($event)" #filter style="display:none"></filter>
 

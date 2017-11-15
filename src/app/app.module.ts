@@ -16,6 +16,7 @@ import { FilterComponent } from './components/filter.component/filter.component'
 
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+import {ScrollToModule} from 'ng2-scroll-to';
 
 
 // Import routes
@@ -60,7 +61,8 @@ export class SafePipe implements PipeTransform {
     Routing,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     DataService,

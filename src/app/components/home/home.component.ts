@@ -18,6 +18,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+
 declare var ga: Function;
 
 @Component({
@@ -29,7 +30,8 @@ declare var ga: Function;
         state('hidden', style({
           height: '0',
           opacity: 0,
-          padding: '0px'
+          padding: '0px',
+          display: 'none'
         })),
         state('visible',   style({
           height: '*',
@@ -52,6 +54,8 @@ export class HomeComponent implements OnInit {
   public selectedLearningPath;
   public headerState = "visible";
   public recoState = "hidden";
+  public selectLessonState = "hidden";
+  public ctaButtonState = "visible";
   public recoTools;
   public linkedContent;
   public finalLearningPath;
@@ -84,8 +88,7 @@ export class HomeComponent implements OnInit {
             this.experts = results[1];
             this.linkedContent = results[2];
             this.tags = results[3];
-            var randomGoal = Math.floor((Math.random() * this.paths.records.length));
-            this.selectedLearningPath = this.paths.records[randomGoal];
+            this.selectedLearningPath = this.paths.records[0];
         }).catch(err => {
             console.error(err);
         });
@@ -113,6 +116,11 @@ export class HomeComponent implements OnInit {
 
     // When finalLearningPath is modified, the chatbot is reloaded
     this.finalLearningPath = this.selectedLearningPath;
+  }
+
+  showSelectLesson() {
+    this.ctaButtonState = "hidden";
+    this.selectLessonState = "visible";
   }
 
   openModal(tool) {
