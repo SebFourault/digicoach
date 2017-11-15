@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { trigger,state, style, animate,transition } from '@angular/animations';
+import { DataService } from '../../services/data/data.service';
 
 
 @Component({
@@ -33,11 +34,12 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
 
   @Input() learningPath;
   public _learningPath;
-  @Input() recoTools;
+  @Input() tools;
+  @Input() linkedContent;
 
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-  constructor() { }
+  constructor( private dataService : DataService ) { }
 
   ngOnInit() {
   }
@@ -45,8 +47,8 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
   ngOnChanges(changes: SimpleChanges) {
     // When values are transmitted, reload the component to make the conversation start
     this._learningPath = changes.learningPath.currentValue;
-    if(this._learningPath && changes.recoTools.currentValue ) {
-      console.log(this.recoTools);
+    if(this._learningPath) {
+      console.log(this.tools);
       var welcomeDialog = this.parseBBcode(this._learningPath.fields['Problem']);
       this.postMultipleBotMessages(welcomeDialog);
     }
@@ -70,6 +72,10 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
           timer += messages[i].content.text.length*15;
           this.postBotMessage(messages[i], timer, 1);
           break;
+        case "img":
+          timer += 1000;
+          this.postBotMessage(messages[i], timer, 1);
+          break;
         case "quickreply":
           timer += 500;
           this.postBotMessage(messages[i], timer, 0);
@@ -77,7 +83,7 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
           break messageLoop;
         case "tools":
           timer += 1500;
-          this.postBotMessage({emiter: 'bot', type:'tools', content:this.recoTools }, timer, 1);
+          this.postBotMessage({emiter: 'bot', type:'tools', content:this.tools }, timer, 1);
           break;
       }
     }
@@ -89,7 +95,17 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
     for (var i = 0; i < messageLines.length; i++) {
       var type = messageLines[i].split(">")[0].toLowerCase();
       var message = {};
+
+      // Text
       message['text'] = messageLines[i].split(">")[1];
+
+      // Images
+      if( type == "img" ) { 
+        message['img'] = message['text'].split(" = ")[0];
+        message['size'] = message['text'].split(" = ")[1];
+      }
+
+      // Quick replies
       if(type == "quickreply") {
         var quickReplyArray = message['text'].split(";");
         delete message['text'];
@@ -100,24 +116,57 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
         }
         message = Object.keys(message).map(function(key) { return message[key]; }); // To make it iterable, we convert the object to an array
       }
+
       result.push({emiter:'bot', type:type, content:message})
     }
     return result;
   }
 
   sendEvent(quickReply) {
-    this.hideQuickReplies();
-    this.postUserMessage(quickReply.text);
-    this.typing = 1;
+    if( !this.dataService.isUrl(quickReply.payload) ) {
+      this.hideQuickReplies();
+      this.postUserMessage(quickReply.text);
+      this.typing = 1;
+    }
+    console.log("payload : " + quickReply.payload )
     switch (true) {
+      // When Payload is a link
+      case ( this.dataService.isUrl(quickReply.payload) ) :
+        this.dataService.openUrl(quickReply.payload, "Chatbot", "goToWebsite", quickReply.payload);
+        break;
       case (quickReply.payload.indexOf('CONTINUE') >= 0) :
         console.log("continue payload");
         this.postMultipleBotMessages( this.state['remainingConv'] );
         break;
       case (quickReply.payload.indexOf('SHOWLEARNINGPATH') >= 0) :
-        this.postMultipleBotMessages(this.parseBBcode(">>TEXT> Allez hop, voici les 3 outils dont je te parle :) >>TOOLS> Joseph >>QUICKREPLY> Commencer l'aventure = CONTINUE >>TEXT> Coming soon ;)"));
+        this.postMultipleBotMessages(this.parseBBcode(">>TEXT> Allez hop, voici les 3 outils dont je te parle :) >>TOOLS> Joseph >>QUICKREPLY> Commencer l'aventure = STARTLESSON"));
+        break;
+      case (quickReply.payload.indexOf('STARTLESSON') >= 0) :
+        var lessonScript = this.createLessonScript();
+        this.postMultipleBotMessages(this.parseBBcode(lessonScript));
         break;
     }
+  }
+
+  createLessonScript() {
+    var pathTools = this._learningPath.fields['Path'].split(" >> ");
+    var lesson = "";
+    for (var i = 0; i < pathTools.length; i++) {
+      var elementType = pathTools[i].split(" > ")[0];
+      var elementName = pathTools[i].split(" > ")[1];
+      if( elementType == "TOOL" ) {
+        var tool = this.tools.filter(x => x.fields['Tool'] == elementName );
+        lesson += tool[0].fields['Lesson'];
+        if( pathTools[i+1] ) {
+          lesson += ">>TEXT> Allez hop, passons au prochain chapitre : " + pathTools[i+1].split(" > ")[1] + ">>QUICKREPLY> I'm ready ! = CONTINUE";
+        }
+      }
+      if( elementType == "CONTENT" ) {
+        var content = this.linkedContent.filter(x => x.fields['Content'] == elementName );
+        lesson += content[0].fields['Lesson'];
+      }
+    }
+    return lesson;
   }
 
   hideQuickReplies() {
@@ -162,16 +211,6 @@ postBotMessage(msg, time, typing){
   }, time);
 }
 
-
-postBotImage(img, time, typing){
-  window.setTimeout( function(){
-    this.chatlog.push({emiter: 'bot', type:'img', content: img});
-
-    //$('#chatlog').append('<li class="ChatLog__entry"><img class="ChatLog__avatar" src="' + avatarUrl + '" /><p class="ChatLog__message ChatLog__message__img"><img class="img-msg" src="' + img + '"></p></li>');
-    this.refreshTypingLoader(typing);
-    this.refreshScrollToBottom();
-  }, time);
-}
 
 showQuickReplies(replies, time){
 

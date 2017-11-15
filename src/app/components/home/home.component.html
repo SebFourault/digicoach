@@ -62,7 +62,7 @@
       <!--
       <h3> C'est parti pour {{ selectedLearningPath.fields['Goal'] }} ! </h3>
       <p> {{ selectedLearningPath.fields['Problem'] }} <br> {{ selectedLearningPath.fields['Conviction'] }} <br> {{ selectedLearningPath.fields['Learning Path'] }} </p> -->
-      <app-chatbot [learningPath]="finalLearningPath" [recoTools]="recoTools"></app-chatbot>
+      <app-chatbot [learningPath]="finalLearningPath" [tools]="tools.records" [linkedContent]="linkedContent.records" *ngIf="tools"></app-chatbot>
     </div>
 
   </div>
@@ -86,12 +86,12 @@
 
           <div class="tool-card-content clickable" (click)="openModal(tool)">
             <h4 class="tool-card-title"> {{ tool.fields['Tool'] }} </h4>
-            <p class="tool-card-difficulty"> {{ tool.fields['Difficulty'] }} </p>
+            <p class="tool-card-difficulty" [style.color]="dataService.getTagColor(tool.fields['Difficulty'], tags)" *ngIf="tags"> {{ tool.fields['Difficulty'] }} </p>
 
             <p class="truc"> {{ tool.fields['Description'] }}</p>
 
             <span class="label-usage" *ngFor="let usage of tool.fields['Usage']">
-                <span class="mdl-chip__text" [style.color]="dataService.getTagColor(usage, tags)" *ngIf="tags" > {{ usage }} </span>
+                <span class="mdl-chip__text" > {{ usage }} </span>
             </span>
             <br>
             <div class="tool-card-platform-icon-container">

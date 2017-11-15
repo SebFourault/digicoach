@@ -3,6 +3,7 @@ import { Http, Response }     from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import {GoogleAnalyticsEventsService} from '../../services/google-analytics-events.service/google-analytics-events.service';
 
 @Injectable()
 export class DataService {
@@ -10,7 +11,7 @@ export class DataService {
   private apiKey = "keyLtjlBongEfqxXa";
   airtableUrl = 'https://api.airtable.com/v0/app8NspdipCZRwGXM/';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) { }
 
 
 
@@ -78,6 +79,21 @@ export class DataService {
       if(tags.records[i].fields.Name == tagName ) { return tags.records[i].fields.Color; }
     }
     return "lightgrey";
+  }
+
+  isUrl(userInput) {
+    var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    return (res == null) ? false : true;
+  }
+
+  isImageUrl(userInput) {
+    var res = userInput.match(/(https?:\/\/.*\.(?:png|jpg))/i);
+    return (res == null) ? false : true;
+  }
+
+  openUrl(url, category, action, label) {
+    this.googleAnalyticsEventsService.emitEvent(category, action, label, 1);
+    window.open(url, "_blank");
   }
 
 }

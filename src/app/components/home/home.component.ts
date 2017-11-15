@@ -28,7 +28,8 @@ declare var ga: Function;
       trigger('slideUp', [
         state('hidden', style({
           height: '0',
-          opacity: 0
+          opacity: 0,
+          padding: '0px'
         })),
         state('visible',   style({
           height: '*',
@@ -108,7 +109,9 @@ export class HomeComponent implements OnInit {
   showLearningPath() {
     this.headerState = "hidden";
     this.recoState = "visible";
-    this.recoTools = this.tools['records'].filter(x => this.selectedLearningPath.fields['Tools'].includes(x.id) );
+    // this.recoTools = this.tools['records'].filter(x => this.selectedLearningPath.fields['Tools'].includes(x.id) );
+
+    // When finalLearningPath is modified, the chatbot is reloaded
     this.finalLearningPath = this.selectedLearningPath;
   }
 
@@ -121,10 +124,6 @@ export class HomeComponent implements OnInit {
       return Array.isArray(x.fields['Tools Linked']) ? x.fields['Tools Linked'].includes(tool.id) : 0;
     });
     this.modal.open(ToolmodalComponent, overlayConfigFactory({ tool: tool, experts: experts, tags: this.tags, linkedContent: linkedContent }, BSModalContext));
-  }
-
-  openUrl(url) {
-    window.open(url, "_blank");
   }
 
   /**

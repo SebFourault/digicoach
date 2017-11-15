@@ -143,7 +143,7 @@ p {
   font-family: Montserrat;
   font-size: 9pt;
   font-weight: bold;
-  color: #CEE5FF;
+  color: #7ab8ff;
   bottom: 55px;
 }
 
@@ -161,6 +161,28 @@ p {
   font-weight: bold;
   color: #CEE5FF;
   margin-top: -10px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.difficulty-round {
+  width: 13px;
+  height: 13px;
+  border-radius: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px;
+  background-color: #55d184;
+}
+
+.beginner .padawan { 
+  background-color: #55d184;
+}
+.jedi {
+  background-color: #fcb800;
+}
+.master-jedi {
+  background-color: #ff3e75;
 }
 
 h4 {

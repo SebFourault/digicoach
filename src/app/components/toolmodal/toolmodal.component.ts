@@ -5,6 +5,8 @@ import { DataService } from '../../services/data/data.service';
 import { DialogRef, ModalComponent, CloseGuard } from 'ngx-modialog';
 import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 
+import { GoogleAnalyticsEventsService } from '../../services/google-analytics-events.service/google-analytics-events.service';
+
 
 export class ToolmodalContext extends BSModalContext {
   public tool;
@@ -21,7 +23,7 @@ export class ToolmodalComponent implements OnInit, CloseGuard, ModalComponent<To
 
   context: ToolmodalContext;
 
-  constructor(public dialog: DialogRef<ToolmodalContext>, public sanitizer: DomSanitizer, private dataService : DataService) { 
+  constructor(public dialog: DialogRef<ToolmodalContext>, public sanitizer: DomSanitizer, private dataService : DataService, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) { 
     this.context = dialog.context;
     dialog.setCloseGuard(this);
     this.context.size = 'lg';
@@ -38,6 +40,7 @@ export class ToolmodalComponent implements OnInit, CloseGuard, ModalComponent<To
   beforeClose(): boolean {
     return false;
   }
+
 
   embedify(url) {
     // DETECT URL LIKE https://www.youtube.com/watch?v=htPYk6QxacQ

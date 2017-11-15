@@ -49,7 +49,7 @@
       </div>
 
       <div class="action-button mdl-cell mdl-cell--2-col">
-        <a class="mdl-button position-action-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" href="{{ context.tool.fields['Link'] }}" target="_blank">
+        <a class="mdl-button position-action-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" (click)="dataService.openUrl(context.tool.fields['Link'], 'ToolCard', 'goToWebsite', context.tool.fields['Tool'])">
           <i class="material-icons">open_in_new</i>
         </a>
       </div>

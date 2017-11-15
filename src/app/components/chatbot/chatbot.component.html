@@ -13,6 +13,10 @@
           </ng-container>
         </li>
 
+
+        <li  *ngIf="message.emiter == 'bot' && message.type=='img'" class="ChatLog__entry"><img class="ChatLog__avatar" src="../assets/img/logo-square.png" /><p class="ChatLog__message ChatLog__message__img"><img class="img-msg" [src]="message.content.img | safe" [style.width]="message.content.size"></p></li>
+
+
         <li *ngIf="message.emiter == 'bot' && message.type=='tools'" class="ChatLog__entry">
           <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
 
