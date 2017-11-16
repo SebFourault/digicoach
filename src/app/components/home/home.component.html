@@ -84,7 +84,7 @@
 
 <div class="container" id="main-section" >
 
-    <filter (change)="onCriteriasChanged($event)" #filter style="display:none"></filter>
+    <filter (change)="onCriteriasChanged($event)" #filter></filter>
 
     <div class="mdl-grid" *ngIf="tools && filter.ready">
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
@@ -114,7 +114,7 @@
               </ng-container>
             </div>
           </div>
-        </div>
+      </div>
 
       <!-- Card "Add a New Tool" -->
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card">
@@ -126,6 +126,6 @@
           <p class="suggest-tool-label"> SUGGEST A NEW TOOL </p>
         </div>
       </div>
-      
+
     </div>
 </div>
