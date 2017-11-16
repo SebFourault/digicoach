@@ -123,25 +123,26 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
   }
 
   sendEvent(quickReply) {
-    if( !this.dataService.isUrl(quickReply.payload) ) {
-      this.hideQuickReplies();
-      this.postUserMessage(quickReply.text);
-      this.typing = 1;
-    }
     console.log("payload : " + quickReply.payload )
     switch (true) {
-      // When Payload is a link
+      // LINK
       case ( this.dataService.isUrl(quickReply.payload) ) :
         this.dataService.openUrl(quickReply.payload, "Chatbot", "goToWebsite", quickReply.payload);
         break;
+      // QUESTION
+      case (quickReply.payload.indexOf('QUESTION') >= 0) :
+        window.$crisp.push(["do", "chat:open"]);
+        window.$crisp.push(["do", "message:send", ["text", "Hello ! J'ai une question sur le cours " + this._learningPath.fields['Goal'] ]]);
+        break;
+      // CONTINUE
       case (quickReply.payload.indexOf('CONTINUE') >= 0) :
         console.log("continue payload");
+        this.hideQuickReplies(quickReply);
         this.postMultipleBotMessages( this.state['remainingConv'] );
         break;
-      case (quickReply.payload.indexOf('SHOWLEARNINGPATH') >= 0) :
-        this.postMultipleBotMessages(this.parseBBcode(">>TEXT> Allez hop, voici les 3 outils dont je te parle :) >>TOOLS> Joseph >>QUICKREPLY> Commencer l'aventure = STARTLESSON"));
-        break;
+      //STARTLESSON
       case (quickReply.payload.indexOf('STARTLESSON') >= 0) :
+        this.hideQuickReplies(quickReply);
         var lessonScript = this.createLessonScript();
         this.postMultipleBotMessages(this.parseBBcode(lessonScript));
         break;
@@ -157,9 +158,6 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
       if( elementType == "TOOL" ) {
         var tool = this.tools.filter(x => x.fields['Tool'] == elementName );
         lesson += tool[0].fields['Lesson'];
-        if( pathTools[i+1] ) {
-          lesson += ">>TEXT> Allez hop, passons au prochain chapitre : " + pathTools[i+1].split(" > ")[1] + ">>QUICKREPLY> I'm ready ! = CONTINUE";
-        }
       }
       if( elementType == "CONTENT" ) {
         var content = this.linkedContent.filter(x => x.fields['Content'] == elementName );
@@ -169,10 +167,12 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
     return lesson;
   }
 
-  hideQuickReplies() {
+  hideQuickReplies(quickReply) {
     for (var i = 0; i < this.chatlog.length; i++) {
       if( this.chatlog[i].type == "quickreply" ) { this.chatlog[i]['hidden'] = true; }
     }
+    this.postUserMessage(quickReply.text);
+    this.typing = 1;
   }
 
   send(event) {
