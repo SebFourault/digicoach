@@ -3,7 +3,7 @@
     <div class="mdl-cell mdl-cell--12-col">
       <img class="logo" src="../../../assets/img/logo.png">
       <div [@slideUp]="ctaButtonState">
-        <h1> Apprend à travailler comme un digital native ! </h1> 
+        <h1> Apprend à travailler comme un digital native ! </h1>
         <p class="subtitle">Ici on apprend à utiliser les meilleurs outils et pratiques du digital pour concevoir, s'organiser, <br>et communiquer comme de vrais startupers </p>
       </div>
     </div>
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <!-- 
+      <!--
       <div class="mdl-cell mdl-cell--3-col">
             <h5>Et j'ai</h5>
             <select id="red">
@@ -77,15 +77,19 @@
 
   </div>
 
-  <a class="scroll-down" scrollTo href="#main-section" > Explore la boite à outil <br> <i class="material-icons">keyboard_arrow_down</i> </a> 
+  <a class="scroll-down" scrollTo href="#main-section" > Explore la boite à outil <br> <i class="material-icons">keyboard_arrow_down</i> </a>
 
 </div>
 
 
 <div class="container" id="main-section" >
 
-    <filter (change)="onCriteriasChanged($event)" #filter style="display:none"></filter>
-
+    <filter (change)="onCriteriasChanged($event)" #filter></filter>
+    <!--
+    <hr>
+    <p>Insert Staff pick here</p>
+    <hr>
+    -->
     <div class="mdl-grid" *ngIf="tools && filter.ready">
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
 
@@ -126,6 +130,6 @@
           <p class="suggest-tool-label"> SUGGEST A NEW TOOL </p>
         </div>
       </div>
-      
+
     </div>
 </div>

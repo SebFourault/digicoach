@@ -76,7 +76,7 @@ export class DataService {
 
   getTagColor(tagName, tags) {
     for (var i = 0; i < tags.records.length; i++) {
-      if(tags.records[i].fields.Name == tagName ) { return tags.records[i].fields.Color; }
+      if(tags.records[i].fields.Name === tagName ) { return tags.records[i].fields.Color; }
     }
     return "lightgrey";
   }
