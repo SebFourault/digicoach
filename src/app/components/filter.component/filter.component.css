@@ -1,0 +1,11 @@
+
+.filter-description {
+  font-family: Roboto;
+  font-size: 10pt;
+  font-weight: 500;
+  font-style: normal;
+  /*color: #80bafe;*/
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+}

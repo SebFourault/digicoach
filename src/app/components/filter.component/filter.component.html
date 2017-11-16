@@ -1,3 +1,4 @@
+<!--
 <ng-template #checked><i class="material-icons">check_box</i></ng-template>
 <ng-template #unchecked><i class="material-icons">check_box_outline_blank</i></ng-template>
 
@@ -14,4 +15,39 @@
             </li>
         </ul>
     </span>
+</div>
+-->
+<ng-template #coloredButton>
+  <button type="button" class="mdl-chip" style="background-color: #3f51b5; color: white">
+      <span class="mdl-chip__text">Show All</span>
+  </button>
+</ng-template>
+<ng-template #greyButton>
+  <button type="button" class="mdl-chip" (click)="restoreCriteria('Usage')">
+      <span class="mdl-chip__text">Show All</span>
+  </button>
+</ng-template>
+<div class="mdl-grid" *ngIf="ready" style="display: inline;">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="filter-description">
+      Explorer par usage
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col" *ngIf="filters[0].Values">
+
+    <span *ngIf="allSelected;then coloredButton else greyButton"></span>
+
+    <span *ngFor="let usage of filters[0].Values; let i = index;">
+      <span *ngIf="hasCriteria('Usage', usage)">
+        <button type="button" class="mdl-chip"  [ngStyle]="{'background-color': filters[0].Colors[i], 'color': 'white'}" (click)="toggleCriteria('Usage', usage); isCriteriaActive('Usage');">
+            <span class="mdl-chip__text">{{usage}}</span>
+        </button>
+      </span>
+      <span *ngIf="!hasCriteria('Usage', usage)">
+        <button type="button" class="mdl-chip" (click)="toggleCriteria('Usage', usage)">
+            <span class="mdl-chip__text">{{usage}}</span>
+        </button>
+      </span>
+    </span>
+  </div>
 </div>

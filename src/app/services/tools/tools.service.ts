@@ -25,8 +25,16 @@ export class ToolsService {
             tools['records'].forEach( (tool: any) => {
               (tool.fields['Staff pick']) ? tool.fields['Staff pick filter'] = 'Yes' : tool.fields['Staff pick filter'] = 'No';
             })
-            return tools;
+            return this.shuffleToolsList(tools);
         });
+    }
+    /* Create random list of tools from Airtable */
+    private shuffleToolsList(array: any[]): any[] {
+      for (let i = array['records'].length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [array['records'][i], array['records'][j]] = [array['records'][j], array['records'][i]];
+      }
+      return array
     }
 
   }
