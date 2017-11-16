@@ -15,6 +15,7 @@ import { ToolCriterias } from '../../shared/toolcriterias.model';
 export class FilterComponent implements OnInit {
     public filters: any[] = [];
     public ready: boolean = false;
+    public allSelected: boolean = true;
 
     @Input()
     public criterias: ToolCriterias = new ToolCriterias();
@@ -31,7 +32,8 @@ export class FilterComponent implements OnInit {
         Observable.onErrorResumeNext(
             Observable.forkJoin([
                 this.dataService.observeTable("Tools"),
-                this.dataService.observeTable("Experts")
+                this.dataService.observeTable("Experts"),
+                this.dataService.observeTable("Tags")
             ])
         ).subscribe(results => {
             let Usage: string[] = [];
@@ -40,16 +42,18 @@ export class FilterComponent implements OnInit {
             let DataPrivacyCompliance: string[] = [];
             let Expert: string[] = [];
             let StaffPick: string[] = [];
+            let colorsUsage: string[] = [];
             this.filters = [
                 {
                     Name: 'Usage',
                     ModelName: 'Usage',
-                    Values: Usage
+                    Values: Usage,
+                    Colors: colorsUsage
                 },
                 {
                     Name: 'Difficulty',
                     ModelName: 'Difficulty',
-                    Values: Difficulty
+                    Values: Difficulty,
                 },
                 {
                     Name: 'Time to master',
@@ -73,8 +77,9 @@ export class FilterComponent implements OnInit {
                 }
             ];
             // Add Usage, Difficulty, Time to master, Data privacy Compliance to the filters
-            if (results[0]['records'] instanceof Array) {
+            if ((results[0]['records'] instanceof Array) && (results[2]['records'] instanceof Array)) {
               var aux1 = results[0]['records'].filter(value => value.fields.Tool != '');
+              var aux3 = results[2];
               //Keep ony tools that should be published
               //results[0] = results[0].filter(x => x.fields.Published);
               for (var i=0; i<this.filters.length-2; i++){
@@ -101,6 +106,10 @@ export class FilterComponent implements OnInit {
                   // Sort the array of distinct values
                   this.filters[i].Values = itemList.sort();
               }
+              // Add Tag colors to Usage
+              for (var l=0; l<this.filters[0].Values.length; l++) {
+                colorsUsage.push(this.dataService.getTagColor(this.filters[0].Values[l], aux3))
+              }
             }
             // Add Experts name to the filter
             if (results[1]['records'] instanceof Array) {
@@ -116,6 +125,8 @@ export class FilterComponent implements OnInit {
                     this.criterias[filter.ModelName] = filter.Values.slice(0);
                 }
             }
+            // Dans le cadre de la beta, on ne travaille que sur le paramètre Usage pour filtrer les outils
+            delete this.criterias['Usage'];
             this.change.emit(this.criterias);
             this.ready = true;
         });
@@ -141,7 +152,19 @@ export class FilterComponent implements OnInit {
                     this.criterias[name].splice(index, 1);
             }
         }
+        this.allSelected = false;
         this.change.emit(this.criterias);
+    }
+
+    /**
+     * Annule le filtrage et Réinitialise toutes valeurs d'un critère du filtre
+     * @param name Le nom du critère
+     */
+    public restoreCriteria(name): void {
+      // Supprimer tous les valeurs d'un critère est équivalent pour le pipe à avoir toutes les valeurs de ce critère
+      delete this.criterias[name];
+      this.allSelected = true;
+      this.change.emit(this.criterias);
     }
 
     /**
@@ -150,8 +173,17 @@ export class FilterComponent implements OnInit {
      * @param value La valeur du critère
      * @returns true si le critère de filtre est on sinon false
      */
-    public hasCriteria(name, value) {
+    public hasCriteria(name, value): boolean {
         return this.criterias && this.criterias[name] && this.criterias[name].indexOf(value) !== -1;
+    }
+
+    /**
+     * Indique si une typologie de critère possède des valeurs actives au niveau du filtre
+     * @param name Le nom de la typologie de filtre (Usage, Difficulty, ...)
+     * @returns true si ce type de critère possède au moins une valeur active au niveau de filtre est on sinon false
+    */ public isCriteriaActive(name): void {
+        console.log(this.criterias);
+        (!this.criterias[name])? this.allSelected = true : this.allSelected = false;
     }
 
     public checkCriteriaType(item: any): string[] {
