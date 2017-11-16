@@ -3,8 +3,15 @@
 
     <ul #scrollMe class="ChatLog" id="chatlog">
       <ng-container *ngFor="let message of chatlog">
-        <li *ngIf="message.emiter == 'bot' && message.type=='text'" class="ChatLog__entry"><img class="ChatLog__avatar" src="../assets/img/logo-square.png" /><p class="ChatLog__message"> {{ message.content.text }} </p></li>
-        <li *ngIf="message.emiter == 'user'" class="ChatLog__entry ChatLog__entry_mine"><p class="ChatLog__message"> {{ message.content }} </p></li>
+
+        <li *ngIf="message.emiter == 'bot' && message.type=='text'" class="ChatLog__entry">
+          <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
+          <p class="ChatLog__message"> {{ message.content.text }} </p>
+        </li>
+
+        <li *ngIf="message.emiter == 'user'" class="ChatLog__entry ChatLog__entry_mine">
+          <p class="ChatLog__message"> {{ message.content }} </p>
+        </li>
 
         <li *ngIf="message.emiter == 'bot' && message.type=='quickreply'" class="ChatLog__entry" [ngClass]="message.hidden == true ? 'hidden' : ''">
           <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
@@ -13,8 +20,21 @@
           </ng-container>
         </li>
 
+        <li  *ngIf="message.emiter == 'bot' && message.type=='img'" class="ChatLog__entry">
+          <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
+          <p class="ChatLog__message ChatLog__message__img">
+            <img class="img-msg" [src]="message.content.img | safe" [style.width]="message.content.size">
+          </p>
+        </li>
 
-        <li  *ngIf="message.emiter == 'bot' && message.type=='img'" class="ChatLog__entry"><img class="ChatLog__avatar" src="../assets/img/logo-square.png" /><p class="ChatLog__message ChatLog__message__img"><img class="img-msg" [src]="message.content.img | safe" [style.width]="message.content.size"></p></li>
+        <li  *ngIf="message.emiter == 'bot' && message.type=='video'" class="ChatLog__entry">
+          <img class="ChatLog__avatar" src="../assets/img/logo-square.png" />
+          <p class="ChatLog__message ChatLog__message__img">
+            <iframe class="video"
+            [src]="dataService.embedify( message.content.video ) | safe"
+            frameborder="0" allowfullscreen [style.width]="message.content.size" [style.height]="ratioVideo(message.content.size)"></iframe>
+          </p>
+        </li>
 
 
         <li *ngIf="message.emiter == 'bot' && message.type=='tools'" class="ChatLog__entry">

@@ -78,7 +78,7 @@
           <div class="mdl-cell mdl-cell--12-col">
             <div class="video-container">
             <iframe class="video"
-              [src]="embedify( context.tool.fields['Tuto video link'] ) | safe"
+              [src]="dataService.embedify( context.tool.fields['Tuto video link'] ) | safe"
               frameborder="0" allowfullscreen *ngIf="context.tool.fields['Tuto video link']"></iframe>
             </div>
 

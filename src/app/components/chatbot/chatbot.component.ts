@@ -49,8 +49,8 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
     this._learningPath = this.learningPath;
     if(this._learningPath) {
       console.log(this.tools);
-      var welcomeDialog = this.parseBBcode(this._learningPath.fields['Problem']);
-      this.postMultipleBotMessages(welcomeDialog);
+      var script = this.parseBBcode(this.createLessonScript(this._learningPath.fields['Problem']));
+      this.postMultipleBotMessages(script);
     }
   }
 
@@ -73,6 +73,10 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
           this.postBotMessage(messages[i], timer, 1);
           break;
         case "img":
+          timer += 1000;
+          this.postBotMessage(messages[i], timer, 1);
+          break;
+        case "video":
           timer += 1000;
           this.postBotMessage(messages[i], timer, 1);
           break;
@@ -105,6 +109,12 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
         message['size'] = message['text'].split(" = ")[1];
       }
 
+      // Videos
+      if( type == "video" ) { 
+        message['video'] = message['text'].split(" = ")[0].replace(/\s/g,''); // Get rid of whitespaces to have a clean URL
+        message['size'] = message['text'].split(" = ")[1];
+      }
+
       // Quick replies
       if(type == "quickreply") {
         var quickReplyArray = message['text'].split(";");
@@ -122,6 +132,7 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
     return result;
   }
 
+  // When a quick reply is pressed
   sendEvent(quickReply) {
     console.log("payload : " + quickReply.payload )
     switch (true) {
@@ -140,31 +151,37 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
         this.hideQuickReplies(quickReply);
         this.postMultipleBotMessages( this.state['remainingConv'] );
         break;
-      //STARTLESSON
-      case (quickReply.payload.indexOf('STARTLESSON') >= 0) :
-        this.hideQuickReplies(quickReply);
-        var lessonScript = this.createLessonScript();
-        this.postMultipleBotMessages(this.parseBBcode(lessonScript));
-        break;
+      // JUMP
+      case (quickReply.payload.indexOf('JUMP') >= 0) :
+      console.log("jump payload");
+      this.hideQuickReplies(quickReply);
+      var jumpPoint = quickReply.payload.split("_")[1];
+      var jumpIndex = this.state['remainingConv'].map(function(e) { return e.content.text; }).indexOf(jumpPoint);
+      console.log("index of jumppoint = " + jumpIndex);
+      this.postMultipleBotMessages( this.state['remainingConv'].splice( jumpIndex, this.state['remainingConv'].length ) );
+      break;
     }
   }
 
-  createLessonScript() {
-    var pathTools = this._learningPath.fields['Path'].split(" >> ");
-    var lesson = "";
-    for (var i = 0; i < pathTools.length; i++) {
-      var elementType = pathTools[i].split(" > ")[0];
-      var elementName = pathTools[i].split(" > ")[1];
-      if( elementType == "TOOL" ) {
-        var tool = this.tools.filter(x => x.fields['Tool'] == elementName );
-        lesson += tool[0].fields['Lesson'];
-      }
-      if( elementType == "CONTENT" ) {
-        var content = this.linkedContent.filter(x => x.fields['Content'] == elementName );
-        lesson += content[0].fields['Lesson'];
+  // Copy and Paste lesson on Tools and Content into the dialog script played by the bot
+  createLessonScript(messages) {
+    var result = "";
+    var messageLines = messages.split(">>");
+    for (var i = 0; i < messageLines.length; i++) {
+      var type = messageLines[i].split(">")[0].toLowerCase();
+      var text = messageLines[i].split(">")[1];
+      if( type == "tool" ) {
+        var tool = this.tools.filter(x => x.fields['Tool'] == text.split('"')[1] );
+        result += tool[0].fields['Lesson'];
+      } else
+      if ( type == "content" ) {
+        var content = this.linkedContent.filter(x => x.fields['Content'] == text.split('"')[1] );
+        result += content[0].fields['Lesson'];
+      } else {
+        result += ">>" + type + ">" + text;
       }
     }
-    return lesson;
+    return result;
   }
 
   hideQuickReplies(quickReply) {
@@ -270,6 +287,10 @@ refreshTypingLoader(typing){
 
 refreshScrollToBottom(){
   this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+}
+
+ratioVideo(width) {
+  return parseInt(width)*0.5625 + "px";
 }
 
 }
