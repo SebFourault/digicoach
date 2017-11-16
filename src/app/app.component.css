@@ -21,6 +21,13 @@
   background-color: transparent;
 }
 
+@media (max-width: 479px) {
+  .custom-footer {
+    background-size: cover;
+  }
+}
+
+
 .action-button {
   margin-top: 69px;
 }

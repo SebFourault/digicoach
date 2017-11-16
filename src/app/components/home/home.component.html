@@ -115,19 +115,17 @@
             </div>
           </div>
         </div>
-      </div>
 
       <!-- Card "Add a New Tool" -->
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card">
-
-        <div class="tool-logo-card not-visible clickable" (click)="openUrl('https://airtable.com/shrJf6CZwg1sK9bYR')">
+        <div class="tool-logo-card not-visible clickable" (click)="dataService.openUrl('https://airtable.com/shrJf6CZwg1sK9bYR', 'Home', 'suggestNewTool', 'newTool')">
           <img src="../../../assets/img/nologo.png" class="tool-logo">
         </div>
-
-        <div class="tool-card-content suggest-tool-card clickable" (click)="openUrl('https://airtable.com/shrJf6CZwg1sK9bYR')">
+        <div class="tool-card-content suggest-tool-card clickable" (click)="dataService.openUrl('https://airtable.com/shrJf6CZwg1sK9bYR', 'Home', 'suggestNewTool', 'newTool')">
           <i class="material-icons suggest-tool-icon">add_circle</i>
           <p class="suggest-tool-label"> SUGGEST A NEW TOOL </p>
         </div>
       </div>
-
+      
+    </div>
 </div>
