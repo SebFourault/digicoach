@@ -22,6 +22,8 @@ export class ToolsService {
             this._dataService.observeTable('Tools')
         ]).map((results: any[]) => {
             const tools: any[] = results[0];
+            // Filter to keep only "published" tools
+            tools['records'] = tools['records'].filter( (tool: any) => tool['fields']['Published']);
             tools['records'].forEach( (tool: any) => {
               (tool.fields['Staff pick']) ? tool.fields['Staff pick filter'] = 'Yes' : tool.fields['Staff pick filter'] = 'No';
             })
