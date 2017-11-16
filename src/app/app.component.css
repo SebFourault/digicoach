@@ -21,6 +21,16 @@
   background-color: transparent;
 }
 
+.footer-social-ico {
+  width: 30px;
+  margin: 10px;
+}
+
+.footer-social-content {
+  float: right;
+}
+
+
 @media (max-width: 479px) {
   .custom-footer {
     background-size: cover;
