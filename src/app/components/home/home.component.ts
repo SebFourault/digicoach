@@ -17,7 +17,6 @@ import { ToolmodalComponent } from '../toolmodal/toolmodal.component';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 
 declare var ga: Function;

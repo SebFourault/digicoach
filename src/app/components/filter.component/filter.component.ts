@@ -1,9 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { DataService } from '../../services/data/data.service';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
+//import 'rxjs/add/observable/onerrorresumenext';
 import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/observable/onerrorresumenext';
 
 import { ToolCriterias } from '../../shared/toolcriterias.model';
 
@@ -29,13 +29,12 @@ export class FilterComponent implements OnInit {
 
     public ngOnInit() {
         //this.dataService.getTable("Tools").then( data => this.tools = data );
-        Observable.onErrorResumeNext(
-            Observable.forkJoin([
+          Observable.forkJoin([
                 this.dataService.observeTable("Tools"),
                 this.dataService.observeTable("Experts"),
                 this.dataService.observeTable("Tags")
             ])
-        ).subscribe(results => {
+            .subscribe(results => {
             let Usage: string[] = [];
             let Difficulty: string[] = [];
             let TimeToMaster: string[] = [];
