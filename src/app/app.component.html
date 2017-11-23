@@ -48,6 +48,7 @@
       <main class="mdl-layout__content" #outlet>
         <div class="page-content">
           <router-outlet (activate)="onActivate($event, outlet)"></router-outlet>
+          <subscribe></subscribe>
         </div>
 
         <footer class="mdl-mini-footer custom-footer">
@@ -58,9 +59,6 @@
               <a href="https://twitter.com/GeekmeU" target="_blank"><img src="../assets/img/social/twitter_ico.png" alt="" class="footer-social-ico"></a>
               <a href="http://www.instagram.com/geekme_up" target="_blank"><img src="../assets/img/social/instagram_ico.png" alt="" class="footer-social-ico"></a>
             </div>
-          </div>
-          <div class="mdl-mini-footer__bottom-section container">
-            <subscribe></subscribe>
           </div>
         </footer>
 

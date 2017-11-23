@@ -1,0 +1,50 @@
+h4 {
+    font-family: Roboto;
+    text-align: center;
+    font-size: 16pt;
+    color: white;
+}
+
+h5 {
+    font-family: Roboto;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 200;
+    color: rgb(217, 235, 255);
+}
+
+.subscribe-container {
+    background: linear-gradient(to bottom right, #2C5DD5 0%, #4457C0 100%);
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    margin-top: 90px;
+}
+
+.newsletter-image {
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 180px;
+}
+
+.email-input {
+    background-color: white;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 20px;
+    width: 230px;
+    display: inline-block;
+    font-size: 18px;
+    color: #183889;
+}
+
+.subscribe-send-button {
+    color: white;
+    font-size: 31px;
+}
+
+.subscribe-input-container {
+    width: 310px;
+    margin: auto;
+}
