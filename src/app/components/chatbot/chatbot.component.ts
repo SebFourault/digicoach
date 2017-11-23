@@ -95,6 +95,7 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
 
   parseBBcode(messages) {
     var result = [];
+    var messages = this.dataService.removeLineBreaks(messages);
     var messageLines = messages.split(">>");
     for (var i = 0; i < messageLines.length; i++) {
       var type = messageLines[i].split(">")[0].toLowerCase();
@@ -156,6 +157,8 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
       console.log("jump payload");
       this.hideQuickReplies(quickReply);
       var jumpPoint = quickReply.payload.split("_")[1];
+      console.log("jumpPoint : '" + jumpPoint + "'");
+      console.log(this.state['remainingConv']);
       var jumpIndex = this.state['remainingConv'].map(function(e) { return e.content.text; }).indexOf(jumpPoint);
       console.log("index of jumppoint = " + jumpIndex);
       this.postMultipleBotMessages( this.state['remainingConv'].splice( jumpIndex, this.state['remainingConv'].length ) );

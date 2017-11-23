@@ -328,3 +328,30 @@ select {
 .suggest-tool-card:hover {
   opacity: 1;
 }
+
+/* ANIMATION TOOL CARDS DELAYED
+@keyframes FadeIn { 
+  0% {
+    opacity: 0;
+    transform: scale(.1);
+  }
+
+  85% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tool-card {
+  animation: FadeIn 0.3s linear;
+  animation-fill-mode: both;
+}
+
+.tool-card:nth-child(1) { animation-delay: .1s }
+.tool-card:nth-child(2) { animation-delay: .2s }
+.tool-card:nth-child(3) { animation-delay: .3s }
+.tool-card:nth-child(4) { animation-delay: .4s }
+*/

@@ -106,4 +106,8 @@ export class DataService {
       .replace(loomPattern, 'https://www.useloom.com/embed/$1')
   }
 
+  removeLineBreaks(text) {
+    return text.replace(/(\r\n|\n|\r)/gm,"");
+  }
+
 }

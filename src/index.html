@@ -34,7 +34,82 @@
 
 </head>
 <body>
-  <app-root>Preparing your Geek Toolbox...</app-root>
+  <app-root>
+
+    <!-- Everything inside <app-root> tag will be erased after loading completes -->
+    <div class="loader">
+        <div class="one"></div>
+        <div class="two"></div>
+    </div>
+      <h1> Loading your experience </h1>
+    <style>
+      h1 {
+        position: absolute;
+        top: 55%;
+        font-family: Roboto;
+        font-weight: 300;
+        color: white;
+        width:400px;
+        left:50%;
+        margin-left:-180px;
+      }
+
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom right, #2C5DD5 0%, #4457C0 100%);
+      }
+
+      .loader {
+        position: relative;
+      }
+
+      .one {
+        position: absolute;
+        border-radius: 50%;
+        background: #FFFFFF;
+        opacity: .0;
+        animation: loading 1.3s .65s infinite;
+        height: 20px;
+        width: 20px;
+      }
+
+      .two {
+        position: absolute;
+        border-radius: 50%;
+        background: #FF4081;
+        opacity: .0;
+        animation: loading 1.3s infinite;
+        height: 20px;
+        width: 20px;
+      }
+
+
+      @keyframes loading {
+        0% {
+          opacity: .0;
+          transform: scale(.15);
+          box-shadow: 0 0 2px rgba(black, .1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(2);
+          box-shadow: 0 0 10px rgba(black, .1);
+        }
+        100% {
+          opacity: .0;
+          transform: scale(.15);
+          box-shadow: 0 0 2px rgba(black, .1);
+        }
+      }
+    </style>
+
+  </app-root>
+
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
