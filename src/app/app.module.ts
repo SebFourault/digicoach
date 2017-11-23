@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule, Jsonp } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialDesignDirective } from './directives/material-design.directive/material-design.directive';
@@ -12,6 +12,7 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { DataService } from './services/data/data.service';
 import { ToolsService } from "app/services/tools/tools.service";
+import { SubscribeComponent } from "./components/subscribe.component/subscribe.component";
 import { GoogleAnalyticsEventsService } from './services/google-analytics-events.service/google-analytics-events.service';
 import { FilterComponent } from './components/filter.component/filter.component';
 
@@ -50,6 +51,7 @@ import { HavingPipe } from "app/pipes/having/having.pipe";
     ToolmodalComponent,
     OurstoryComponent,
     ContactComponent,
+    SubscribeComponent,
     FilterComponent,
     HavingPipe
   ],
@@ -58,6 +60,7 @@ import { HavingPipe } from "app/pipes/having/having.pipe";
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     Routing,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
