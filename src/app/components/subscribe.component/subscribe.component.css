@@ -33,7 +33,7 @@ h5 {
     border-radius: 20px;
     border: none;
     padding: 10px 20px;
-    width: 230px;
+    width: 90%;
     display: inline-block;
     font-size: 18px;
     color: #183889;
@@ -45,6 +45,12 @@ h5 {
 }
 
 .subscribe-input-container {
-    width: 310px;
+    width: 90%;
     margin: auto;
+}
+
+.button-subscribe {
+    margin: auto;
+    height: 100%;
+    width: 100%;
 }
