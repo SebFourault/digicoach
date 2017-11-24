@@ -23,7 +23,7 @@ export class ToolmodalComponent implements OnInit, CloseGuard, ModalComponent<To
 
   context: ToolmodalContext;
 
-  constructor(public dialog: DialogRef<ToolmodalContext>, public sanitizer: DomSanitizer, private dataService : DataService, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) { 
+  constructor(public dialog: DialogRef<ToolmodalContext>, public sanitizer: DomSanitizer, public dataService : DataService, public googleAnalyticsEventsService: GoogleAnalyticsEventsService) { 
     this.context = dialog.context;
     dialog.setCloseGuard(this);
     this.context.size = 'lg';
