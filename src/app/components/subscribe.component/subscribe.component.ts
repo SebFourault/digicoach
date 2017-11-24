@@ -9,13 +9,20 @@ import { NgForm } from '@angular/forms';
 })
 export class SubscribeComponent implements OnInit {
   public result: any;
+  public emailSubmit: boolean;
+  public success: boolean;
   constructor(private jsonp: Jsonp) {}
   //constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.emailSubmit = false;
+  }
   onSubmit(f: NgForm)  {
     let email = f.value.EMAIL;
     let url = 'https://geekup.us17.list-manage.com/subscribe/post-json?u=4a3d493e65679baac69a3ae66&id=582471fd4b&subscribe=Subscribe&EMAIL='+email+'&c=JSONP_CALLBACK';
     this.jsonp.request(url, { method: 'Get' })
-        .subscribe((res) => { this.result = res.json(); console.log(this.result) });
+        .subscribe((res) => {
+          this.result = res.json();
+          (this.result['result'] === 'success')? this.success = true:this.success = false;
+          this.emailSubmit = true; });
   }
 }
