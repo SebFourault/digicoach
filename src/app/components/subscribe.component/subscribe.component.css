@@ -1,3 +1,19 @@
+.center {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.subscribe-chip {
+  background-color: white;
+}
+.subscribe-text {
+  color: #183889;
+  font-size: 16px;
+}
+.full-width{
+  width: 100%;
+}
+
 h4 {
     font-family: Roboto;
     text-align: center;
@@ -47,10 +63,4 @@ h5 {
 .subscribe-input-container {
     width: 90%;
     margin: auto;
-}
-
-.button-subscribe {
-    margin: auto;
-    height: 100%;
-    width: 100%;
 }
