@@ -8,15 +8,18 @@
             <h4>Dans notre newsletter, on te parle des derniers outils à la pointe</h4>
             <h5>(Garantie 100% sans spam )</h5>
             <div class="mdl-grid">
-              <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--12-col-phone mdl-cell--0-offset-phone">
+              <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--12-col-phone mdl-cell--0-offset-phone" *ngIf="!emailSubmit || !success">
                 <div class="subscribe-input-container">
                   <input type="email" name="EMAIL" ngModel #EMAIL="ngModel" placeholder="Email" class="email-input">
                 </div>
               </div>
-              <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--12-col-phone">
+              <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--12-col-phone" *ngIf="!emailSubmit || !success">
                 <button class="mdl-button mdl-js-button mdl-button--icon button-subscribe" type="submit" value="Subscribe" name="subscribe">
                   <i class="material-icons subscribe-send-button">send</i>
                 </button>
+              </div>
+              <div *ngIf="emailSubmit" class="full-width center">
+                <span *ngIf="success;then congrats else error"></span>
               </div>
             </div>
         </form>
