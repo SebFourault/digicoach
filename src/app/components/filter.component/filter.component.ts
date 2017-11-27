@@ -137,7 +137,10 @@ export class FilterComponent implements OnInit {
      * @param value La valeur du critère
      */
     public toggleCriteria(name, value) {
-        let direction = -1;
+        //let direction = -1;
+        delete this.criterias[name];
+        this.criterias[name] = [value];
+        /* Use lines below for multiple criterias selection
         if (!this.criterias[name]) {
             this.criterias[name] = [value];
         } else {
@@ -150,7 +153,7 @@ export class FilterComponent implements OnInit {
                 else
                     this.criterias[name].splice(index, 1);
             }
-        }
+        }*/
         this.allSelected = false;
         this.change.emit(this.criterias);
     }
@@ -180,8 +183,8 @@ export class FilterComponent implements OnInit {
      * Indique si une typologie de critère possède des valeurs actives au niveau du filtre
      * @param name Le nom de la typologie de filtre (Usage, Difficulty, ...)
      * @returns true si ce type de critère possède au moins une valeur active au niveau de filtre est on sinon false
-    */ public isCriteriaActive(name): void {
-        console.log(this.criterias);
+    */
+    public isCriteriaActive(name): void {
         (!this.criterias[name])? this.allSelected = true : this.allSelected = false;
     }
 
