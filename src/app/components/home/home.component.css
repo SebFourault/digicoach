@@ -1,3 +1,9 @@
+.center {
+  margin-top: 40px!important;
+  margin-bottom: 40px!important;
+  text-align: center;
+}
+
 hr {
   display: block;
   margin-top: 0.5em;
@@ -330,7 +336,7 @@ select {
 }
 
 /* ANIMATION TOOL CARDS DELAYED
-@keyframes FadeIn { 
+@keyframes FadeIn {
   0% {
     opacity: 0;
     transform: scale(.1);
