@@ -9,3 +9,28 @@
   text-transform: uppercase;
   display: block;
 }
+
+.filter-container {
+  text-align: center;
+  padding: 10px 10px 0px 10px;
+}
+
+.filter-chip {
+  margin: 5px 5px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.icon-delete-filter {
+  vertical-align: sub;
+  font-size: 20px;
+}
+
+.container-delete-filter {
+  color: grey;
+  font-size: 17px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  background-color: none; 
+}

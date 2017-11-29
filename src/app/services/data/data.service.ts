@@ -96,6 +96,10 @@ export class DataService {
     window.open(url, "_blank");
   }
 
+  sendAnalyticsEvent(category, action, label) {
+    this.googleAnalyticsEventsService.emitEvent(category, action, label, 1);
+  }
+
   embedify(url) {
     // DETECT URL LIKE https://www.youtube.com/watch?v=htPYk6QxacQ
     var youtubePattern = /\b(?:https?|ftp):\/\/www.youtube.com\/watch\?v=([a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim

@@ -18,36 +18,32 @@
 </div>
 -->
 <ng-template #coloredButton>
-  <button type="button" class="mdl-chip" style="background-color: #3f51b5; color: white">
-      <span class="mdl-chip__text">Show All</span>
+  <button type="button" class="mdl-chip filter-chip" style="background-color: #3f51b5; color: white; display:none;">
+      <span class="mdl-chip__text"><b> All Tools </b> </span>
   </button>
 </ng-template>
-<ng-template #greyButton>
-  <button type="button" class="mdl-chip" (click)="restoreCriteria('Usage')">
-      <span class="mdl-chip__text">Show All</span>
-  </button>
-</ng-template>
-<div class="mdl-grid" *ngIf="ready" style="display: inline;">
-  <div class="mdl-cell mdl-cell--12-col">
-    <div class="filter-description">
-      Explorer par usage
-    </div>
-  </div>
-  <div class="mdl-cell mdl-cell--12-col" *ngIf="filters[0].Values">
+<div class="mdl-grid" *ngIf="ready">
+  <div class="mdl-cell mdl-cell--12-col filter-container" *ngIf="filters[0].Values">
 
     <span *ngIf="allSelected;then coloredButton else greyButton"></span>
 
     <span *ngFor="let usage of filters[0].Values; let i = index;">
       <span *ngIf="hasCriteria('Usage', usage)">
-        <button type="button" class="mdl-chip"  [ngStyle]="{'background-color': filters[0].Colors[i], 'color': 'white'}" (click)="toggleCriteria('Usage', usage); isCriteriaActive('Usage');">
+        <button type="button" class="mdl-chip filter-chip"  [ngStyle]="{'background-color': filters[0].Colors[i], 'color': 'white'}" (click)="toggleCriteria('Usage', usage); isCriteriaActive('Usage');">
             <span class="mdl-chip__text">{{usage}}</span>
         </button>
       </span>
       <span *ngIf="!hasCriteria('Usage', usage)">
-        <button type="button" class="mdl-chip" (click)="toggleCriteria('Usage', usage)">
+        <button type="button" class="mdl-chip filter-chip" (click)="toggleCriteria('Usage', usage)">
             <span class="mdl-chip__text">{{usage}}</span>
         </button>
       </span>
     </span>
   </div>
 </div>
+
+<ng-template #greyButton>
+    <div class="container-delete-filter clickable" (click)="restoreCriteria('Usage')">
+        <span> <i class="material-icons icon-delete-filter">clear</i> Clear filter</span>
+    </div>
+</ng-template>

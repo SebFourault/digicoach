@@ -21,17 +21,16 @@
             </nav>
           </div>
 
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                      mdl-textfield--floating-label mdl-textfield--align-right">
-            <label class="mdl-button mdl-js-button mdl-button--icon"
-                   for="waterfall-exp">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" name="sample"
-                     id="waterfall-exp">
+          <form (ngSubmit)="dataService.openUrl('https://www.youtube.com/watch?v=kxopViU98Xo', 'Home', 'goToWebsite', 'Epic Sax Guy')">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                  <i class="material-icons">search</i>
+                </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </header>
       <div class="mdl-layout__drawer mdl-layout--small-screen-only">

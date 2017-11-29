@@ -49,6 +49,7 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
     this._learningPath = this.learningPath;
     if(this._learningPath) {
       console.log(this.tools);
+      this.dataService.sendAnalyticsEvent("Chatbot", "openConversation", this._learningPath.fields['Goal']);
       var script = this.parseBBcode(this.createLessonScript(this._learningPath.fields['Problem']));
       this.postMultipleBotMessages(script);
     }
@@ -143,18 +144,21 @@ export class ChatbotComponent implements OnInit, OnChanges, AfterViewChecked {
         break;
       // QUESTION
       case (quickReply.payload.indexOf('QUESTION') >= 0) :
+        this.dataService.sendAnalyticsEvent("Chatbot", "quickReply", "questionToHuman");
         window.$crisp.push(["do", "chat:open"]);
         window.$crisp.push(["do", "message:send", ["text", "Hello ! J'ai une question sur le cours " + this._learningPath.fields['Goal'] ]]);
         break;
       // CONTINUE
       case (quickReply.payload.indexOf('CONTINUE') >= 0) :
         console.log("continue payload");
+        this.dataService.sendAnalyticsEvent("Chatbot", "quickReply", "continue");
         this.hideQuickReplies(quickReply);
         this.postMultipleBotMessages( this.state['remainingConv'] );
         break;
       // JUMP
       case (quickReply.payload.indexOf('JUMP') >= 0) :
       console.log("jump payload");
+      this.dataService.sendAnalyticsEvent("Chatbot", "quickReply", quickReply.payload );
       this.hideQuickReplies(quickReply);
       var jumpPoint = quickReply.payload.split("_")[1];
       console.log("jumpPoint : '" + jumpPoint + "'");
