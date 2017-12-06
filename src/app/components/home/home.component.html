@@ -54,7 +54,7 @@
 </div>
 
 
-<div class="container" id="main-section">
+<div class="container" id="main-section" [@listAnimation]="tools.length">
     <div class="container center" *ngIf="!filter.ready">
       <div class="mdl-spinner mdl-js-spinner is-active" style="vertical-align: middle;"></div>
     </div>
@@ -64,7 +64,7 @@
     <p>Insert Staff pick here</p>
     <hr>
     -->
-    <div class="mdl-grid" *ngIf="tools && filter.ready">
+    <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--6-col-phone tool-card" *ngFor="let tool of tools.records | having:filter.criterias; let i = index;">
 
           <div class="tool-logo-card clickable" (click)="openModal(tool)">

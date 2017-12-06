@@ -21,7 +21,7 @@ export class AppComponent implements OnInit  {
 
     public paths;
     public selectedValue;
-    constructor(private _router: Router, public googleAnalyticsEventsService: GoogleAnalyticsEventsService, private dataService : DataService) {
+    constructor(private _router: Router, public googleAnalyticsEventsService: GoogleAnalyticsEventsService, public dataService : DataService) {
       this._router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           ga('set', 'page', event.urlAfterRedirects);

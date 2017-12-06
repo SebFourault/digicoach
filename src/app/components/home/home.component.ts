@@ -14,7 +14,7 @@ import { overlayConfigFactory } from "ngx-modialog";
 import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { ToolmodalComponent } from '../toolmodal/toolmodal.component';
 
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger,state, style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -26,6 +26,7 @@ declare var ga: Function;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [
+
       trigger('slideUp', [
         state('hidden', style({
           height: '0',
@@ -39,11 +40,24 @@ declare var ga: Function;
         })),
         transition('hidden => visible', animate('300ms ease-in')),
         transition('visible => hidden', animate('500ms ease-in-out'))
+      ]),
+
+      trigger('listAnimation', [
+        transition('* => *', [
+          query(':enter', style({ opacity: 0 }), {optional: true}), 
+          query(':enter', stagger('300ms', [
+            animate('1s ease-in', keyframes([
+              style({opacity: 0, transform: 'translateY(75%)', offset: 0}),
+              style({opacity: .5, transform: 'translateY(-35px)',  offset: 0.3}),
+              style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+            ]))]), {optional: true})
+        ])
       ])
+
     ]
 })
 export class HomeComponent implements OnInit {
-  public tools: any[];
+  public tools = [];
   private allTools: any[];
   public experts;
   public tags;
